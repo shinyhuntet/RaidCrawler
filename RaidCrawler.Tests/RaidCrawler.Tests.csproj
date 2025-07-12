@@ -1,0 +1,106 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Blocks\lisa_30_449_Gentle_21_31_25_21_8_31_SL\base" />
+    <None Remove="Blocks\lisa_30_449_Gentle_21_31_25_21_8_31_SL\fixed_reward_item_array" />
+    <None Remove="Blocks\lisa_30_449_Gentle_21_31_25_21_8_31_SL\lottery_reward_item_array" />
+    <None Remove="Blocks\lisa_30_449_Gentle_21_31_25_21_8_31_SL\raid_enemy_array" />
+    <None Remove="Blocks\lisa_30_449_Gentle_21_31_25_21_8_31_SL\raid_priority_array" />
+    <None Remove="Blocks\newt_56_761_Calm_4_7_4_3_31_25_VL\base" />
+    <None Remove="Blocks\newt_56_761_Calm_4_7_4_3_31_25_VL\fixed_reward_item_array" />
+    <None Remove="Blocks\newt_56_761_Calm_4_7_4_3_31_25_VL\lottery_reward_item_array" />
+    <None Remove="Blocks\newt_56_761_Calm_4_7_4_3_31_25_VL\raid_enemy_array" />
+    <None Remove="Blocks\newt_56_761_Calm_4_7_4_3_31_25_VL\raid_priority_array" />
+    <None Remove="Blocks\senna_9_132_Modest_31_0_31_31_31_31_SL\base" />
+    <None Remove="Blocks\senna_9_132_Modest_31_0_31_31_31_31_SL\fixed_reward_item_array" />
+    <None Remove="Blocks\senna_9_132_Modest_31_0_31_31_31_31_SL\lottery_reward_item_array" />
+    <None Remove="Blocks\senna_9_132_Modest_31_0_31_31_31_31_SL\raid_enemy_array" />
+    <None Remove="Blocks\senna_9_132_Modest_31_0_31_31_31_31_SL\raid_priority_array" />
+    <None Remove="Blocks\anubis_Might_cleared_VL\base" />
+    <None Remove="Blocks\anubis_Might_cleared_VL\fixed_reward_item_array" />
+    <None Remove="Blocks\anubis_Might_cleared_VL\lottery_reward_item_array" />
+    <None Remove="Blocks\anubis_Might_cleared_VL\raid_enemy_array" />
+    <None Remove="Blocks\anubis_Might_cleared_VL\raid_priority_array" />
+    <None Remove="Blocks\buddy_12_Distro_noMight_VL\base" />
+    <None Remove="Blocks\buddy_12_Distro_noMight_VL\fixed_reward_item_array" />
+    <None Remove="Blocks\buddy_12_Distro_noMight_VL\lottery_reward_item_array" />
+    <None Remove="Blocks\buddy_12_Distro_noMight_VL\raid_enemy_array" />
+    <None Remove="Blocks\buddy_12_Distro_noMight_VL\raid_priority_array" />
+    <None Remove="Blocks\chaos_12_Distro_noMight_VL\base" />
+    <None Remove="Blocks\chaos_12_Distro_noMight_VL\fixed_reward_item_array" />
+    <None Remove="Blocks\chaos_12_Distro_noMight_VL\lottery_reward_item_array" />
+    <None Remove="Blocks\chaos_12_Distro_noMight_VL\raid_enemy_array" />
+    <None Remove="Blocks\chaos_12_Distro_noMight_VL\raid_priority_array" />
+    <None Remove="Filters\BounsweetShiny.json" />
+    <None Remove="Filters\Ditto0Atk.json" />
+    <None Remove="Filters\IVControl.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Blocks\lisa_30_449_Gentle_21_31_25_21_8_31_SL\base" />
+    <EmbeddedResource Include="Blocks\lisa_30_449_Gentle_21_31_25_21_8_31_SL\fixed_reward_item_array" />
+    <EmbeddedResource Include="Blocks\lisa_30_449_Gentle_21_31_25_21_8_31_SL\lottery_reward_item_array" />
+    <EmbeddedResource Include="Blocks\lisa_30_449_Gentle_21_31_25_21_8_31_SL\raid_enemy_array" />
+    <EmbeddedResource Include="Blocks\lisa_30_449_Gentle_21_31_25_21_8_31_SL\raid_priority_array" />
+    <EmbeddedResource Include="Blocks\newt_56_761_Calm_4_7_4_3_31_25_VL\base" />
+    <EmbeddedResource Include="Blocks\newt_56_761_Calm_4_7_4_3_31_25_VL\fixed_reward_item_array" />
+    <EmbeddedResource Include="Blocks\newt_56_761_Calm_4_7_4_3_31_25_VL\lottery_reward_item_array" />
+    <EmbeddedResource Include="Blocks\newt_56_761_Calm_4_7_4_3_31_25_VL\raid_enemy_array" />
+    <EmbeddedResource Include="Blocks\newt_56_761_Calm_4_7_4_3_31_25_VL\raid_priority_array" />
+    <EmbeddedResource Include="Blocks\senna_9_132_Modest_31_0_31_31_31_31_SL\base" />
+    <EmbeddedResource Include="Blocks\senna_9_132_Modest_31_0_31_31_31_31_SL\fixed_reward_item_array" />
+    <EmbeddedResource Include="Blocks\senna_9_132_Modest_31_0_31_31_31_31_SL\lottery_reward_item_array" />
+    <EmbeddedResource Include="Blocks\senna_9_132_Modest_31_0_31_31_31_31_SL\raid_enemy_array" />
+    <EmbeddedResource Include="Blocks\senna_9_132_Modest_31_0_31_31_31_31_SL\raid_priority_array" />
+    <EmbeddedResource Include="Blocks\anubis_Might_cleared_VL\base" />
+    <EmbeddedResource Include="Blocks\anubis_Might_cleared_VL\fixed_reward_item_array" />
+    <EmbeddedResource Include="Blocks\anubis_Might_cleared_VL\raid_enemy_array" />
+    <EmbeddedResource Include="Blocks\anubis_Might_cleared_VL\raid_priority_array" />
+    <EmbeddedResource Include="Blocks\buddy_12_Distro_noMight_VL\base" />
+    <EmbeddedResource Include="Blocks\buddy_12_Distro_noMight_VL\fixed_reward_item_array" />
+    <EmbeddedResource Include="Blocks\buddy_12_Distro_noMight_VL\lottery_reward_item_array" />
+    <EmbeddedResource Include="Blocks\buddy_12_Distro_noMight_VL\raid_enemy_array" />
+    <EmbeddedResource Include="Blocks\buddy_12_Distro_noMight_VL\raid_priority_array" />
+    <EmbeddedResource Include="Blocks\chaos_12_Distro_noMight_VL\base" />
+    <EmbeddedResource Include="Blocks\chaos_12_Distro_noMight_VL\fixed_reward_item_array" />
+    <EmbeddedResource Include="Blocks\chaos_12_Distro_noMight_VL\lottery_reward_item_array" />
+    <EmbeddedResource Include="Blocks\chaos_12_Distro_noMight_VL\raid_enemy_array" />
+    <EmbeddedResource Include="Blocks\chaos_12_Distro_noMight_VL\raid_priority_array" />
+    <EmbeddedResource Include="Filters\BounsweetShiny.json" />
+    <EmbeddedResource Include="Filters\Ditto0Atk.json" />
+    <EmbeddedResource Include="Filters\IVControl.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="6.12.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="PKHeX.Core" Version="25.6.9" />
+    <PackageReference Include="xunit" Version="2.6.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.4">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="6.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RaidCrawler.Core\RaidCrawler.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Blocks\anubis_Might_cleared_VL\lottery_reward_item_array" />
+  </ItemGroup>
+
+</Project>
