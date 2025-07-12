@@ -70,6 +70,8 @@ partial class ConfigWindow
         ExperimentalView = new CheckBox();
         tabControl1 = new TabControl();
         tabGeneral = new TabPage();
+        ScanFieldGruop = new GroupBox();
+        EncounterTypeCombo = new ComboBox();
         LocationGroup = new GroupBox();
         BlueberryScanCheck = new CheckBox();
         KitakamiScanCheck = new CheckBox();
@@ -95,6 +97,8 @@ partial class ConfigWindow
         BaseDelay = new NumericUpDown();
         UseMapTrick = new CheckBox();
         tabWebhook = new TabPage();
+        TimeZoneCombo = new ComboBox();
+        TimeZonelabel = new Label();
         EmojiConfig = new Button();
         labelWebhooks = new Label();
         label21 = new Label();
@@ -116,8 +120,6 @@ partial class ConfigWindow
         labelAppName = new Label();
         picAppIcon = new PictureBox();
         labelAppVersion = new Label();
-        ScanFieldGruop = new GroupBox();
-        EncounterTypeCombo = new ComboBox();
         ((System.ComponentModel.ISupportInitialize)SystemReset).BeginInit();
         ((System.ComponentModel.ISupportInitialize)RelaunchDelay).BeginInit();
         ((System.ComponentModel.ISupportInitialize)SystemDDownPresses).BeginInit();
@@ -132,6 +134,7 @@ partial class ConfigWindow
         ((System.ComponentModel.ISupportInitialize)DaysToSkip).BeginInit();
         tabControl1.SuspendLayout();
         tabGeneral.SuspendLayout();
+        ScanFieldGruop.SuspendLayout();
         LocationGroup.SuspendLayout();
         tabMatch.SuspendLayout();
         tabAdvanceDate.SuspendLayout();
@@ -142,54 +145,50 @@ partial class ConfigWindow
         tabExperimental.SuspendLayout();
         tabAbout.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)picAppIcon).BeginInit();
-        ScanFieldGruop.SuspendLayout();
         SuspendLayout();
         // 
         // SystemReset
         // 
-        SystemReset.Location = new Point(338, 613);
-        SystemReset.Margin = new Padding(3, 4, 3, 4);
+        SystemReset.Location = new Point(296, 460);
         SystemReset.Maximum = new decimal(new int[] { 2000, 0, 0, 0 });
         SystemReset.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
         SystemReset.Name = "SystemReset";
-        SystemReset.Size = new Size(78, 27);
+        SystemReset.Size = new Size(68, 23);
         SystemReset.TabIndex = 47;
         SystemReset.Value = new decimal(new int[] { 30, 0, 0, 0 });
         // 
         // L_SystemReset
         // 
         L_SystemReset.AutoSize = true;
-        L_SystemReset.Location = new Point(9, 620);
+        L_SystemReset.Location = new Point(8, 465);
         L_SystemReset.Name = "L_SystemReset";
-        L_SystemReset.Size = new Size(252, 20);
+        L_SystemReset.Size = new Size(201, 15);
         L_SystemReset.TabIndex = 46;
         L_SystemReset.Text = "Relaunch game after this many skips:";
         // 
         // RelaunchDelay
         // 
-        RelaunchDelay.Location = new Point(338, 652);
-        RelaunchDelay.Margin = new Padding(3, 4, 3, 4);
+        RelaunchDelay.Location = new Point(296, 489);
         RelaunchDelay.Maximum = new decimal(new int[] { 20000, 0, 0, 0 });
         RelaunchDelay.Name = "RelaunchDelay";
-        RelaunchDelay.Size = new Size(78, 27);
+        RelaunchDelay.Size = new Size(68, 23);
         RelaunchDelay.TabIndex = 49;
         // 
         // L_RelaunchDelay
         // 
         L_RelaunchDelay.AutoSize = true;
-        L_RelaunchDelay.Location = new Point(9, 655);
+        L_RelaunchDelay.Location = new Point(8, 491);
         L_RelaunchDelay.Name = "L_RelaunchDelay";
-        L_RelaunchDelay.Size = new Size(249, 20);
+        L_RelaunchDelay.Size = new Size(196, 15);
         L_RelaunchDelay.TabIndex = 48;
         L_RelaunchDelay.Text = "Extra time to wait to relaunch game:";
         // 
         // FocusWindow
         // 
         FocusWindow.AutoSize = true;
-        FocusWindow.Location = new Point(9, 59);
-        FocusWindow.Margin = new Padding(3, 4, 3, 4);
+        FocusWindow.Location = new Point(8, 44);
         FocusWindow.Name = "FocusWindow";
-        FocusWindow.Size = new Size(151, 24);
+        FocusWindow.Size = new Size(122, 19);
         FocusWindow.TabIndex = 1;
         FocusWindow.Text = "Focus RaidCrawler";
         FocusWindow.UseVisualStyleBackColor = true;
@@ -197,10 +196,9 @@ partial class ConfigWindow
         // EnableAlert
         // 
         EnableAlert.AutoSize = true;
-        EnableAlert.Location = new Point(9, 87);
-        EnableAlert.Margin = new Padding(3, 4, 3, 4);
+        EnableAlert.Location = new Point(8, 65);
         EnableAlert.Name = "EnableAlert";
-        EnableAlert.Size = new Size(366, 24);
+        EnableAlert.Size = new Size(292, 19);
         EnableAlert.TabIndex = 2;
         EnableAlert.Text = "Show an alert window with the following message:";
         EnableAlert.UseVisualStyleBackColor = true;
@@ -209,10 +207,9 @@ partial class ConfigWindow
         // PlayTone
         // 
         PlayTone.AutoSize = true;
-        PlayTone.Location = new Point(9, 31);
-        PlayTone.Margin = new Padding(3, 4, 3, 4);
+        PlayTone.Location = new Point(8, 23);
         PlayTone.Name = "PlayTone";
-        PlayTone.Size = new Size(104, 24);
+        PlayTone.Size = new Size(84, 19);
         PlayTone.TabIndex = 0;
         PlayTone.Text = "Play a tone";
         PlayTone.UseVisualStyleBackColor = true;
@@ -221,262 +218,248 @@ partial class ConfigWindow
         // 
         LabelMatchFound.AutoSize = true;
         LabelMatchFound.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-        LabelMatchFound.Location = new Point(7, 4);
+        LabelMatchFound.Location = new Point(6, 3);
         LabelMatchFound.Name = "LabelMatchFound";
-        LabelMatchFound.Size = new Size(175, 20);
+        LabelMatchFound.Size = new Size(137, 15);
         LabelMatchFound.TabIndex = 3;
         LabelMatchFound.Text = "When a match is found:";
         // 
         // AlertMessage
         // 
-        AlertMessage.Location = new Point(9, 112);
-        AlertMessage.Margin = new Padding(3, 4, 3, 4);
+        AlertMessage.Location = new Point(8, 84);
         AlertMessage.Name = "AlertMessage";
-        AlertMessage.Size = new Size(407, 27);
+        AlertMessage.Size = new Size(357, 23);
         AlertMessage.TabIndex = 4;
         // 
         // label2
         // 
         label2.AutoSize = true;
         label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-        label2.Location = new Point(7, 4);
+        label2.Location = new Point(6, 3);
         label2.Name = "label2";
-        label2.Size = new Size(300, 20);
+        label2.Size = new Size(233, 15);
         label2.TabIndex = 6;
         label2.Text = "Advance Date Options (all timings in ms):";
         // 
         // label1
         // 
         label1.AutoSize = true;
-        label1.Location = new Point(6, 154);
+        label1.Location = new Point(5, 116);
         label1.Name = "label1";
-        label1.Size = new Size(251, 20);
+        label1.Size = new Size(196, 15);
         label1.TabIndex = 8;
         label1.Text = "Base delay to be added to all inputs:";
         // 
         // SystemDDownPresses
         // 
-        SystemDDownPresses.Location = new Point(338, 350);
-        SystemDDownPresses.Margin = new Padding(3, 4, 3, 4);
+        SystemDDownPresses.Location = new Point(296, 262);
         SystemDDownPresses.Maximum = new decimal(new int[] { 99, 0, 0, 0 });
         SystemDDownPresses.Name = "SystemDDownPresses";
-        SystemDDownPresses.Size = new Size(78, 27);
+        SystemDDownPresses.Size = new Size(68, 23);
         SystemDDownPresses.TabIndex = 10;
         SystemDDownPresses.Value = new decimal(new int[] { 38, 0, 0, 0 });
         // 
         // label3
         // 
         label3.AutoSize = true;
-        label3.Location = new Point(9, 352);
+        label3.Location = new Point(8, 264);
         label3.Name = "label3";
-        label3.Size = new Size(290, 20);
+        label3.Size = new Size(227, 15);
         label3.TabIndex = 11;
         label3.Text = "DDOWN inputs to get to \"Date and Time\":";
         // 
         // NavigateToSettings
         // 
-        NavigateToSettings.Location = new Point(340, 234);
-        NavigateToSettings.Margin = new Padding(3, 4, 3, 4);
+        NavigateToSettings.Location = new Point(298, 176);
         NavigateToSettings.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         NavigateToSettings.Name = "NavigateToSettings";
-        NavigateToSettings.Size = new Size(78, 27);
+        NavigateToSettings.Size = new Size(68, 23);
         NavigateToSettings.TabIndex = 16;
         NavigateToSettings.Value = new decimal(new int[] { 100, 0, 0, 0 });
         // 
         // OpenSettings
         // 
-        OpenSettings.Location = new Point(338, 272);
-        OpenSettings.Margin = new Padding(3, 4, 3, 4);
+        OpenSettings.Location = new Point(296, 204);
         OpenSettings.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         OpenSettings.Name = "OpenSettings";
-        OpenSettings.Size = new Size(78, 27);
+        OpenSettings.Size = new Size(68, 23);
         OpenSettings.TabIndex = 17;
         OpenSettings.Value = new decimal(new int[] { 1000, 0, 0, 0 });
         // 
         // OpenHome
         // 
-        OpenHome.Location = new Point(338, 195);
-        OpenHome.Margin = new Padding(3, 4, 3, 4);
+        OpenHome.Location = new Point(296, 146);
         OpenHome.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         OpenHome.Name = "OpenHome";
-        OpenHome.Size = new Size(78, 27);
+        OpenHome.Size = new Size(68, 23);
         OpenHome.TabIndex = 18;
         OpenHome.Value = new decimal(new int[] { 1800, 0, 0, 0 });
         // 
         // LabelDelayOpenHOME
         // 
         LabelDelayOpenHOME.AutoSize = true;
-        LabelDelayOpenHOME.Location = new Point(7, 197);
+        LabelDelayOpenHOME.Location = new Point(6, 148);
         LabelDelayOpenHOME.Name = "LabelDelayOpenHOME";
-        LabelDelayOpenHOME.Size = new Size(174, 20);
+        LabelDelayOpenHOME.Size = new Size(139, 15);
         LabelDelayOpenHOME.TabIndex = 19;
         LabelDelayOpenHOME.Text = "Open Home Menu delay:";
         // 
         // label4
         // 
         label4.AutoSize = true;
-        label4.Location = new Point(8, 236);
+        label4.Location = new Point(7, 177);
         label4.Name = "label4";
-        label4.Size = new Size(185, 20);
+        label4.Size = new Size(146, 15);
         label4.TabIndex = 20;
         label4.Text = "Navigate to settings delay:";
         // 
         // label5
         // 
         label5.AutoSize = true;
-        label5.Location = new Point(9, 274);
+        label5.Location = new Point(8, 206);
         label5.Name = "label5";
-        label5.Size = new Size(143, 20);
+        label5.Size = new Size(114, 15);
         label5.TabIndex = 21;
         label5.Text = "Open settings delay:";
         // 
         // label6
         // 
         label6.AutoSize = true;
-        label6.Location = new Point(9, 310);
+        label6.Location = new Point(8, 232);
         label6.Name = "label6";
-        label6.Size = new Size(235, 20);
+        label6.Size = new Size(185, 15);
         label6.TabIndex = 23;
         label6.Text = "Time to hold to scroll to \"System\":";
         // 
         // Hold
         // 
-        Hold.Location = new Point(338, 308);
-        Hold.Margin = new Padding(3, 4, 3, 4);
+        Hold.Location = new Point(296, 231);
         Hold.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         Hold.Name = "Hold";
-        Hold.Size = new Size(78, 27);
+        Hold.Size = new Size(68, 23);
         Hold.TabIndex = 22;
         Hold.Value = new decimal(new int[] { 1700, 0, 0, 0 });
         // 
         // label7
         // 
         label7.AutoSize = true;
-        label7.Location = new Point(8, 387);
+        label7.Location = new Point(7, 290);
         label7.Name = "label7";
-        label7.Size = new Size(152, 20);
+        label7.Size = new Size(122, 15);
         label7.TabIndex = 25;
         label7.Text = "Open submenu delay:";
         // 
         // Submenu
         // 
-        Submenu.Location = new Point(338, 385);
-        Submenu.Margin = new Padding(3, 4, 3, 4);
+        Submenu.Location = new Point(296, 289);
         Submenu.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         Submenu.Name = "Submenu";
-        Submenu.Size = new Size(78, 27);
+        Submenu.Size = new Size(68, 23);
         Submenu.TabIndex = 24;
         Submenu.Value = new decimal(new int[] { 800, 0, 0, 0 });
         // 
         // label8
         // 
         label8.AutoSize = true;
-        label8.Location = new Point(6, 425);
+        label8.Location = new Point(5, 319);
         label8.Name = "label8";
-        label8.Size = new Size(174, 20);
+        label8.Size = new Size(138, 15);
         label8.TabIndex = 27;
         label8.Text = "Open date change delay:";
         // 
         // DateChange
         // 
-        DateChange.Location = new Point(338, 423);
-        DateChange.Margin = new Padding(3, 4, 3, 4);
+        DateChange.Location = new Point(296, 317);
         DateChange.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         DateChange.Name = "DateChange";
-        DateChange.Size = new Size(78, 27);
+        DateChange.Size = new Size(68, 23);
         DateChange.TabIndex = 26;
         DateChange.Value = new decimal(new int[] { 500, 0, 0, 0 });
         // 
         // label9
         // 
         label9.AutoSize = true;
-        label9.Location = new Point(8, 504);
+        label9.Location = new Point(7, 378);
         label9.Name = "label9";
-        label9.Size = new Size(199, 20);
+        label9.Size = new Size(159, 15);
         label9.TabIndex = 29;
         label9.Text = "Return to Home Menu delay:";
         // 
         // ReturnHome
         // 
-        ReturnHome.Location = new Point(340, 502);
-        ReturnHome.Margin = new Padding(3, 4, 3, 4);
+        ReturnHome.Location = new Point(298, 376);
         ReturnHome.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         ReturnHome.Name = "ReturnHome";
-        ReturnHome.Size = new Size(78, 27);
+        ReturnHome.Size = new Size(68, 23);
         ReturnHome.TabIndex = 28;
         ReturnHome.Value = new decimal(new int[] { 2500, 0, 0, 0 });
         // 
         // label10
         // 
         label10.AutoSize = true;
-        label10.Location = new Point(7, 545);
+        label10.Location = new Point(6, 409);
         label10.Name = "label10";
-        label10.Size = new Size(151, 20);
+        label10.Size = new Size(118, 15);
         label10.TabIndex = 31;
         label10.Text = "Re-open game delay:";
         // 
         // ReturnGame
         // 
-        ReturnGame.Location = new Point(338, 545);
-        ReturnGame.Margin = new Padding(3, 4, 3, 4);
+        ReturnGame.Location = new Point(296, 409);
         ReturnGame.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         ReturnGame.Name = "ReturnGame";
-        ReturnGame.Size = new Size(78, 27);
+        ReturnGame.Size = new Size(68, 23);
         ReturnGame.TabIndex = 30;
         ReturnGame.Value = new decimal(new int[] { 4000, 0, 0, 0 });
         // 
         // label11
         // 
         label11.AutoSize = true;
-        label11.Location = new Point(3, 462);
+        label11.Location = new Point(3, 346);
         label11.Name = "label11";
-        label11.Size = new Size(221, 20);
+        label11.Size = new Size(177, 15);
         label11.TabIndex = 33;
         label11.Text = "Number of days/months to skip:";
         // 
         // DaysToSkip
         // 
-        DaysToSkip.Location = new Point(338, 460);
-        DaysToSkip.Margin = new Padding(3, 4, 3, 4);
+        DaysToSkip.Location = new Point(296, 345);
         DaysToSkip.Maximum = new decimal(new int[] { 99, 0, 0, 0 });
         DaysToSkip.Name = "DaysToSkip";
-        DaysToSkip.Size = new Size(78, 27);
+        DaysToSkip.Size = new Size(68, 23);
         DaysToSkip.TabIndex = 32;
         // 
         // label12
         // 
         label12.AutoSize = true;
-        label12.Location = new Point(32, 32);
+        label12.Location = new Point(28, 24);
         label12.Name = "label12";
-        label12.Size = new Size(308, 20);
+        label12.Size = new Size(246, 15);
         label12.TabIndex = 34;
         label12.Text = "Use touch screen inputs (faster, experimental)";
         // 
         // UseTouch
         // 
         UseTouch.AutoSize = true;
-        UseTouch.Location = new Point(9, 33);
-        UseTouch.Margin = new Padding(3, 4, 3, 4);
+        UseTouch.Location = new Point(8, 25);
         UseTouch.Name = "UseTouch";
-        UseTouch.Size = new Size(18, 17);
+        UseTouch.Size = new Size(15, 14);
         UseTouch.TabIndex = 36;
         UseTouch.UseVisualStyleBackColor = true;
         // 
         // DiscordWebhook
         // 
-        DiscordWebhook.Location = new Point(9, 184);
-        DiscordWebhook.Margin = new Padding(3, 4, 3, 4);
+        DiscordWebhook.Location = new Point(8, 138);
         DiscordWebhook.Name = "DiscordWebhook";
-        DiscordWebhook.Size = new Size(407, 27);
+        DiscordWebhook.Size = new Size(357, 23);
         DiscordWebhook.TabIndex = 37;
         // 
         // EnableDiscordNotifications
         // 
         EnableDiscordNotifications.AutoSize = true;
-        EnableDiscordNotifications.Location = new Point(9, 157);
-        EnableDiscordNotifications.Margin = new Padding(3, 4, 3, 4);
+        EnableDiscordNotifications.Location = new Point(8, 118);
         EnableDiscordNotifications.Name = "EnableDiscordNotifications";
-        EnableDiscordNotifications.Size = new Size(382, 24);
+        EnableDiscordNotifications.Size = new Size(301, 19);
         EnableDiscordNotifications.TabIndex = 38;
         EnableDiscordNotifications.Text = "Send alerts to Discord webhooks (comma separated)";
         EnableDiscordNotifications.UseVisualStyleBackColor = true;
@@ -486,19 +469,18 @@ partial class ConfigWindow
         // 
         label13.AutoSize = true;
         label13.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-        label13.Location = new Point(7, 4);
+        label13.Location = new Point(6, 3);
         label13.Name = "label13";
-        label13.Size = new Size(105, 20);
+        label13.Size = new Size(84, 15);
         label13.TabIndex = 39;
         label13.Text = "Experimental:";
         // 
         // ExperimentalView
         // 
         ExperimentalView.AutoSize = true;
-        ExperimentalView.Location = new Point(9, 31);
-        ExperimentalView.Margin = new Padding(3, 4, 3, 4);
+        ExperimentalView.Location = new Point(8, 23);
         ExperimentalView.Name = "ExperimentalView";
-        ExperimentalView.Size = new Size(241, 24);
+        ExperimentalView.Size = new Size(188, 19);
         ExperimentalView.TabIndex = 40;
         ExperimentalView.Text = "Toggle Streamer Tera Raid View";
         ExperimentalView.UseVisualStyleBackColor = true;
@@ -514,10 +496,9 @@ partial class ConfigWindow
         tabControl1.Controls.Add(tabAbout);
         tabControl1.Dock = DockStyle.Fill;
         tabControl1.Location = new Point(0, 0);
-        tabControl1.Margin = new Padding(3, 4, 3, 4);
         tabControl1.Name = "tabControl1";
         tabControl1.SelectedIndex = 0;
-        tabControl1.Size = new Size(434, 766);
+        tabControl1.Size = new Size(380, 574);
         tabControl1.TabIndex = 41;
         // 
         // tabGeneral
@@ -533,23 +514,46 @@ partial class ConfigWindow
         tabGeneral.Controls.Add(Game);
         tabGeneral.Controls.Add(LabelStoryProgress);
         tabGeneral.Controls.Add(StoryProgress);
-        tabGeneral.Location = new Point(4, 29);
-        tabGeneral.Margin = new Padding(3, 4, 3, 4);
+        tabGeneral.Location = new Point(4, 24);
         tabGeneral.Name = "tabGeneral";
-        tabGeneral.Padding = new Padding(3, 4, 3, 4);
-        tabGeneral.Size = new Size(426, 733);
+        tabGeneral.Padding = new Padding(3);
+        tabGeneral.Size = new Size(372, 546);
         tabGeneral.TabIndex = 5;
         tabGeneral.Text = "General";
         tabGeneral.UseVisualStyleBackColor = true;
+        // 
+        // ScanFieldGruop
+        // 
+        ScanFieldGruop.Controls.Add(EncounterTypeCombo);
+        ScanFieldGruop.Location = new Point(8, 248);
+        ScanFieldGruop.Margin = new Padding(3, 2, 3, 2);
+        ScanFieldGruop.Name = "ScanFieldGruop";
+        ScanFieldGruop.Padding = new Padding(3, 2, 3, 2);
+        ScanFieldGruop.Size = new Size(175, 66);
+        ScanFieldGruop.TabIndex = 116;
+        ScanFieldGruop.TabStop = false;
+        ScanFieldGruop.Text = "Scan Fields";
+        // 
+        // EncounterTypeCombo
+        // 
+        EncounterTypeCombo.FormattingEnabled = true;
+        EncounterTypeCombo.Items.AddRange(new object[] { "WildEncounter", "NonWildEncounter" });
+        EncounterTypeCombo.Location = new Point(10, 29);
+        EncounterTypeCombo.Name = "EncounterTypeCombo";
+        EncounterTypeCombo.Size = new Size(120, 23);
+        EncounterTypeCombo.TabIndex = 117;
+        EncounterTypeCombo.Text = "WildEnconter";
         // 
         // LocationGroup
         // 
         LocationGroup.Controls.Add(BlueberryScanCheck);
         LocationGroup.Controls.Add(KitakamiScanCheck);
         LocationGroup.Controls.Add(PaldeaScanCheck);
-        LocationGroup.Location = new Point(9, 187);
+        LocationGroup.Location = new Point(8, 140);
+        LocationGroup.Margin = new Padding(3, 2, 3, 2);
         LocationGroup.Name = "LocationGroup";
-        LocationGroup.Size = new Size(200, 138);
+        LocationGroup.Padding = new Padding(3, 2, 3, 2);
+        LocationGroup.Size = new Size(175, 104);
         LocationGroup.TabIndex = 115;
         LocationGroup.TabStop = false;
         LocationGroup.Text = "Scan Locations";
@@ -558,9 +562,10 @@ partial class ConfigWindow
         // 
         BlueberryScanCheck.Checked = true;
         BlueberryScanCheck.CheckState = CheckState.Checked;
-        BlueberryScanCheck.Location = new Point(17, 95);
+        BlueberryScanCheck.Location = new Point(15, 71);
+        BlueberryScanCheck.Margin = new Padding(3, 2, 3, 2);
         BlueberryScanCheck.Name = "BlueberryScanCheck";
-        BlueberryScanCheck.Size = new Size(104, 24);
+        BlueberryScanCheck.Size = new Size(91, 18);
         BlueberryScanCheck.TabIndex = 0;
         BlueberryScanCheck.Text = "Blueberry";
         // 
@@ -568,9 +573,10 @@ partial class ConfigWindow
         // 
         KitakamiScanCheck.Checked = true;
         KitakamiScanCheck.CheckState = CheckState.Checked;
-        KitakamiScanCheck.Location = new Point(17, 65);
+        KitakamiScanCheck.Location = new Point(15, 49);
+        KitakamiScanCheck.Margin = new Padding(3, 2, 3, 2);
         KitakamiScanCheck.Name = "KitakamiScanCheck";
-        KitakamiScanCheck.Size = new Size(104, 24);
+        KitakamiScanCheck.Size = new Size(91, 18);
         KitakamiScanCheck.TabIndex = 1;
         KitakamiScanCheck.Text = "Kitakami";
         // 
@@ -578,9 +584,10 @@ partial class ConfigWindow
         // 
         PaldeaScanCheck.Checked = true;
         PaldeaScanCheck.CheckState = CheckState.Checked;
-        PaldeaScanCheck.Location = new Point(17, 35);
+        PaldeaScanCheck.Location = new Point(15, 26);
+        PaldeaScanCheck.Margin = new Padding(3, 2, 3, 2);
         PaldeaScanCheck.Name = "PaldeaScanCheck";
-        PaldeaScanCheck.Size = new Size(104, 24);
+        PaldeaScanCheck.Size = new Size(91, 18);
         PaldeaScanCheck.TabIndex = 2;
         PaldeaScanCheck.Text = "Paldea";
         // 
@@ -588,11 +595,10 @@ partial class ConfigWindow
         // 
         Protocol_dropdown.FormattingEnabled = true;
         Protocol_dropdown.Items.AddRange(new object[] { SwitchProtocol.WiFi, SwitchProtocol.USB });
-        Protocol_dropdown.Location = new Point(182, 143);
-        Protocol_dropdown.Margin = new Padding(3, 4, 3, 4);
+        Protocol_dropdown.Location = new Point(159, 107);
         Protocol_dropdown.MaxDropDownItems = 2;
         Protocol_dropdown.Name = "Protocol_dropdown";
-        Protocol_dropdown.Size = new Size(54, 28);
+        Protocol_dropdown.Size = new Size(48, 23);
         Protocol_dropdown.TabIndex = 111;
         Protocol_dropdown.Text = "WiFi";
         Protocol_dropdown.SelectedValueChanged += Protocol_Changed;
@@ -600,9 +606,9 @@ partial class ConfigWindow
         // Protocol_label
         // 
         Protocol_label.AutoSize = true;
-        Protocol_label.Location = new Point(9, 147);
+        Protocol_label.Location = new Point(8, 110);
         Protocol_label.Name = "Protocol_label";
-        Protocol_label.Size = new Size(147, 20);
+        Protocol_label.Size = new Size(119, 15);
         Protocol_label.TabIndex = 110;
         Protocol_label.Text = "Connection Protocol:";
         // 
@@ -610,18 +616,18 @@ partial class ConfigWindow
         // 
         label23.AutoSize = true;
         label23.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-        label23.Location = new Point(7, 4);
+        label23.Location = new Point(6, 3);
         label23.Name = "label23";
-        label23.Size = new Size(150, 20);
+        label23.Size = new Size(118, 15);
         label23.TabIndex = 109;
         label23.Text = "Application Settings";
         // 
         // LabelEventProgress
         // 
         LabelEventProgress.AutoSize = true;
-        LabelEventProgress.Location = new Point(8, 111);
+        LabelEventProgress.Location = new Point(7, 83);
         LabelEventProgress.Name = "LabelEventProgress";
-        LabelEventProgress.Size = new Size(146, 20);
+        LabelEventProgress.Size = new Size(117, 15);
         LabelEventProgress.TabIndex = 108;
         LabelEventProgress.Text = "Event Progress Level:";
         // 
@@ -629,19 +635,18 @@ partial class ConfigWindow
         // 
         EventProgress.FormattingEnabled = true;
         EventProgress.Items.AddRange(new object[] { "1", "2", "3", "4" });
-        EventProgress.Location = new Point(182, 107);
-        EventProgress.Margin = new Padding(3, 4, 3, 4);
+        EventProgress.Location = new Point(159, 80);
         EventProgress.Name = "EventProgress";
-        EventProgress.Size = new Size(54, 28);
+        EventProgress.Size = new Size(48, 23);
         EventProgress.TabIndex = 107;
         EventProgress.Text = "w";
         // 
         // LabelGame
         // 
         LabelGame.AutoSize = true;
-        LabelGame.Location = new Point(9, 37);
+        LabelGame.Location = new Point(8, 28);
         LabelGame.Name = "LabelGame";
-        LabelGame.Size = new Size(51, 20);
+        LabelGame.Size = new Size(40, 15);
         LabelGame.TabIndex = 106;
         LabelGame.Text = "Game:";
         // 
@@ -649,10 +654,9 @@ partial class ConfigWindow
         // 
         Game.FormattingEnabled = true;
         Game.Items.AddRange(new object[] { "Scarlet", "Violet" });
-        Game.Location = new Point(127, 33);
-        Game.Margin = new Padding(3, 4, 3, 4);
+        Game.Location = new Point(111, 25);
         Game.Name = "Game";
-        Game.Size = new Size(109, 28);
+        Game.Size = new Size(96, 23);
         Game.TabIndex = 105;
         Game.Text = "w";
         Game.SelectedIndexChanged += Game_SelectedIndexChanged;
@@ -660,9 +664,9 @@ partial class ConfigWindow
         // LabelStoryProgress
         // 
         LabelStoryProgress.AutoSize = true;
-        LabelStoryProgress.Location = new Point(9, 73);
+        LabelStoryProgress.Location = new Point(8, 55);
         LabelStoryProgress.Name = "LabelStoryProgress";
-        LabelStoryProgress.Size = new Size(144, 20);
+        LabelStoryProgress.Size = new Size(115, 15);
         LabelStoryProgress.TabIndex = 104;
         LabelStoryProgress.Text = "Story Progress Level:";
         // 
@@ -670,10 +674,9 @@ partial class ConfigWindow
         // 
         StoryProgress.FormattingEnabled = true;
         StoryProgress.Items.AddRange(new object[] { "1", "2", "3", "4", "5" });
-        StoryProgress.Location = new Point(182, 69);
-        StoryProgress.Margin = new Padding(3, 4, 3, 4);
+        StoryProgress.Location = new Point(159, 52);
         StoryProgress.Name = "StoryProgress";
-        StoryProgress.Size = new Size(54, 28);
+        StoryProgress.Size = new Size(48, 23);
         StoryProgress.TabIndex = 103;
         StoryProgress.Text = "w";
         // 
@@ -686,11 +689,10 @@ partial class ConfigWindow
         tabMatch.Controls.Add(PlayTone);
         tabMatch.Controls.Add(DiscordWebhook);
         tabMatch.Controls.Add(AlertMessage);
-        tabMatch.Location = new Point(4, 29);
-        tabMatch.Margin = new Padding(3, 4, 3, 4);
+        tabMatch.Location = new Point(4, 24);
         tabMatch.Name = "tabMatch";
-        tabMatch.Padding = new Padding(3, 4, 3, 4);
-        tabMatch.Size = new Size(426, 733);
+        tabMatch.Padding = new Padding(3);
+        tabMatch.Size = new Size(372, 546);
         tabMatch.TabIndex = 0;
         tabMatch.Text = "Match";
         tabMatch.UseVisualStyleBackColor = true;
@@ -734,39 +736,38 @@ partial class ConfigWindow
         tabAdvanceDate.Controls.Add(Submenu);
         tabAdvanceDate.Controls.Add(BaseDelay);
         tabAdvanceDate.Controls.Add(UseMapTrick);
-        tabAdvanceDate.Location = new Point(4, 29);
-        tabAdvanceDate.Margin = new Padding(3, 4, 3, 4);
+        tabAdvanceDate.Location = new Point(4, 24);
         tabAdvanceDate.Name = "tabAdvanceDate";
-        tabAdvanceDate.Padding = new Padding(3, 4, 3, 4);
-        tabAdvanceDate.Size = new Size(426, 733);
+        tabAdvanceDate.Padding = new Padding(3);
+        tabAdvanceDate.Size = new Size(372, 546);
         tabAdvanceDate.TabIndex = 1;
         tabAdvanceDate.Text = "Advance Date";
         tabAdvanceDate.UseVisualStyleBackColor = true;
         // 
         // DateBack
         // 
-        DateBack.Location = new Point(338, 691);
-        DateBack.Margin = new Padding(3, 4, 3, 4);
+        DateBack.Location = new Point(296, 518);
         DateBack.Maximum = new decimal(new int[] { 99, 0, 0, 0 });
         DateBack.Name = "DateBack";
-        DateBack.Size = new Size(78, 27);
+        DateBack.Size = new Size(68, 23);
         DateBack.TabIndex = 55;
         // 
         // label20
         // 
         label20.AutoSize = true;
-        label20.Location = new Point(9, 693);
+        label20.Location = new Point(8, 520);
         label20.Name = "label20";
-        label20.Size = new Size(165, 20);
+        label20.Size = new Size(131, 15);
         label20.TabIndex = 54;
         label20.Text = "Number of day to back:";
         // 
         // ZyroMethod
         // 
         ZyroMethod.AutoSize = true;
-        ZyroMethod.Location = new Point(7, 117);
+        ZyroMethod.Location = new Point(6, 88);
+        ZyroMethod.Margin = new Padding(3, 2, 3, 2);
         ZyroMethod.Name = "ZyroMethod";
-        ZyroMethod.Size = new Size(415, 24);
+        ZyroMethod.Size = new Size(331, 19);
         ZyroMethod.TabIndex = 53;
         ZyroMethod.Text = "Use Zyro's usb-botbase fork methods (approx. 4-5x faster)";
         ZyroMethod.UseVisualStyleBackColor = true;
@@ -774,29 +775,27 @@ partial class ConfigWindow
         // label16
         // 
         label16.AutoSize = true;
-        label16.Location = new Point(9, 581);
+        label16.Location = new Point(8, 436);
         label16.Name = "label16";
-        label16.Size = new Size(299, 20);
+        label16.Size = new Size(234, 15);
         label16.TabIndex = 40;
         label16.Text = "Time to hold to overshoot \"Date and Time\":";
         // 
         // SystemOvershoot
         // 
-        SystemOvershoot.Location = new Point(338, 579);
-        SystemOvershoot.Margin = new Padding(3, 4, 3, 4);
+        SystemOvershoot.Location = new Point(296, 434);
         SystemOvershoot.Maximum = new decimal(new int[] { 1200, 0, 0, 0 });
         SystemOvershoot.Name = "SystemOvershoot";
-        SystemOvershoot.Size = new Size(78, 27);
+        SystemOvershoot.Size = new Size(68, 23);
         SystemOvershoot.TabIndex = 39;
         SystemOvershoot.Value = new decimal(new int[] { 950, 0, 0, 0 });
         // 
         // UseOvershoot
         // 
         UseOvershoot.AutoSize = true;
-        UseOvershoot.Location = new Point(9, 61);
-        UseOvershoot.Margin = new Padding(3, 4, 3, 4);
+        UseOvershoot.Location = new Point(8, 46);
         UseOvershoot.Name = "UseOvershoot";
-        UseOvershoot.Size = new Size(18, 17);
+        UseOvershoot.Size = new Size(15, 14);
         UseOvershoot.TabIndex = 38;
         UseOvershoot.UseVisualStyleBackColor = true;
         UseOvershoot.CheckedChanged += UseOvershoot_CheckedChanged;
@@ -804,34 +803,34 @@ partial class ConfigWindow
         // label15
         // 
         label15.AutoSize = true;
-        label15.Location = new Point(32, 60);
+        label15.Location = new Point(28, 45);
         label15.Name = "label15";
-        label15.Size = new Size(423, 20);
+        label15.Size = new Size(334, 15);
         label15.TabIndex = 37;
         label15.Text = "Use overshoot instead of DDOWN inputs (faster, experimental)";
         // 
         // BaseDelay
         // 
-        BaseDelay.Location = new Point(338, 152);
-        BaseDelay.Margin = new Padding(3, 4, 3, 4);
+        BaseDelay.Location = new Point(296, 114);
         BaseDelay.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
         BaseDelay.Name = "BaseDelay";
-        BaseDelay.Size = new Size(78, 27);
+        BaseDelay.Size = new Size(68, 23);
         BaseDelay.TabIndex = 9;
         // 
         // UseMapTrick
         // 
         UseMapTrick.AutoSize = true;
-        UseMapTrick.Location = new Point(9, 86);
-        UseMapTrick.Margin = new Padding(3, 4, 3, 4);
+        UseMapTrick.Location = new Point(8, 64);
         UseMapTrick.Name = "UseMapTrick";
-        UseMapTrick.Size = new Size(206, 24);
+        UseMapTrick.Size = new Size(164, 19);
         UseMapTrick.TabIndex = 52;
         UseMapTrick.Text = "Use Map Trick to avoid lag";
         UseMapTrick.UseVisualStyleBackColor = true;
         // 
         // tabWebhook
         // 
+        tabWebhook.Controls.Add(TimeZoneCombo);
+        tabWebhook.Controls.Add(TimeZonelabel);
         tabWebhook.Controls.Add(EmojiConfig);
         tabWebhook.Controls.Add(labelWebhooks);
         tabWebhook.Controls.Add(label21);
@@ -845,20 +844,36 @@ partial class ConfigWindow
         tabWebhook.Controls.Add(label19);
         tabWebhook.Controls.Add(label18);
         tabWebhook.Controls.Add(EnableEmoji);
-        tabWebhook.Location = new Point(4, 29);
-        tabWebhook.Margin = new Padding(3, 4, 3, 4);
+        tabWebhook.Location = new Point(4, 24);
         tabWebhook.Name = "tabWebhook";
-        tabWebhook.Size = new Size(426, 733);
+        tabWebhook.Size = new Size(372, 546);
         tabWebhook.TabIndex = 3;
         tabWebhook.Text = "Webhook";
         tabWebhook.UseVisualStyleBackColor = true;
         // 
+        // TimeZoneCombo
+        // 
+        TimeZoneCombo.FormattingEnabled = true;
+        TimeZoneCombo.Location = new Point(8, 302);
+        TimeZoneCombo.Name = "TimeZoneCombo";
+        TimeZoneCombo.Size = new Size(121, 23);
+        TimeZoneCombo.TabIndex = 48;
+        // 
+        // TimeZonelabel
+        // 
+        TimeZonelabel.AutoSize = true;
+        TimeZonelabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+        TimeZonelabel.Location = new Point(7, 284);
+        TimeZonelabel.Name = "TimeZonelabel";
+        TimeZonelabel.Size = new Size(66, 15);
+        TimeZonelabel.TabIndex = 47;
+        TimeZonelabel.Text = "Time Zone";
+        // 
         // EmojiConfig
         // 
-        EmojiConfig.Location = new Point(8, 125);
-        EmojiConfig.Margin = new Padding(3, 4, 3, 4);
+        EmojiConfig.Location = new Point(7, 94);
         EmojiConfig.Name = "EmojiConfig";
-        EmojiConfig.Size = new Size(114, 31);
+        EmojiConfig.Size = new Size(100, 23);
         EmojiConfig.TabIndex = 46;
         EmojiConfig.Text = "Emoji Config";
         EmojiConfig.UseVisualStyleBackColor = true;
@@ -867,9 +882,9 @@ partial class ConfigWindow
         // labelWebhooks
         // 
         labelWebhooks.AutoSize = true;
-        labelWebhooks.Location = new Point(11, 521);
+        labelWebhooks.Location = new Point(10, 391);
         labelWebhooks.Name = "labelWebhooks";
-        labelWebhooks.Size = new Size(107, 20);
+        labelWebhooks.Size = new Size(85, 15);
         labelWebhooks.TabIndex = 44;
         labelWebhooks.Text = "Webhooks are ";
         // 
@@ -877,35 +892,33 @@ partial class ConfigWindow
         // 
         label21.AutoSize = true;
         label21.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-        label21.Location = new Point(9, 4);
+        label21.Location = new Point(8, 3);
         label21.Name = "label21";
-        label21.Size = new Size(124, 20);
+        label21.Size = new Size(100, 15);
         label21.TabIndex = 43;
         label21.Text = "General Settings";
         // 
         // DiscordMessageContent
         // 
-        DiscordMessageContent.Location = new Point(8, 53);
-        DiscordMessageContent.Margin = new Padding(3, 4, 3, 4);
+        DiscordMessageContent.Location = new Point(7, 40);
         DiscordMessageContent.Name = "DiscordMessageContent";
-        DiscordMessageContent.Size = new Size(407, 27);
+        DiscordMessageContent.Size = new Size(357, 23);
         DiscordMessageContent.TabIndex = 42;
         // 
         // label14
         // 
         label14.AutoSize = true;
-        label14.Location = new Point(8, 29);
+        label14.Location = new Point(7, 22);
         label14.Name = "label14";
-        label14.Size = new Size(354, 20);
+        label14.Size = new Size(283, 15);
         label14.TabIndex = 41;
         label14.Text = "Message Content (ping with <@numerical_user_id>)";
         // 
         // btnTestWebHook
         // 
-        btnTestWebHook.Location = new Point(297, 516);
-        btnTestWebHook.Margin = new Padding(3, 4, 3, 4);
+        btnTestWebHook.Location = new Point(260, 387);
         btnTestWebHook.Name = "btnTestWebHook";
-        btnTestWebHook.Size = new Size(119, 31);
+        btnTestWebHook.Size = new Size(104, 23);
         btnTestWebHook.TabIndex = 22;
         btnTestWebHook.Text = "Test Webhook";
         btnTestWebHook.UseVisualStyleBackColor = true;
@@ -916,10 +929,9 @@ partial class ConfigWindow
         denToggle.AutoSize = true;
         denToggle.Checked = true;
         denToggle.CheckState = CheckState.Checked;
-        denToggle.Location = new Point(9, 332);
-        denToggle.Margin = new Padding(3, 4, 3, 4);
+        denToggle.Location = new Point(8, 249);
         denToggle.Name = "denToggle";
-        denToggle.Size = new Size(98, 24);
+        denToggle.Size = new Size(79, 19);
         denToggle.TabIndex = 21;
         denToggle.Text = "Show Den";
         denToggle.UseVisualStyleBackColor = true;
@@ -928,9 +940,9 @@ partial class ConfigWindow
         // 
         LocationSettings_label.AutoSize = true;
         LocationSettings_label.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-        LocationSettings_label.Location = new Point(8, 308);
+        LocationSettings_label.Location = new Point(7, 231);
         LocationSettings_label.Name = "LocationSettings_label";
-        LocationSettings_label.Size = new Size(130, 20);
+        LocationSettings_label.Size = new Size(103, 15);
         LocationSettings_label.TabIndex = 20;
         LocationSettings_label.Text = "Location Settings";
         // 
@@ -938,19 +950,17 @@ partial class ConfigWindow
         // 
         IVstyle.FormattingEnabled = true;
         IVstyle.Items.AddRange(new object[] { "Emoji", "Highlighted Numerical", "Numerical" });
-        IVstyle.Location = new Point(9, 261);
-        IVstyle.Margin = new Padding(3, 4, 3, 4);
+        IVstyle.Location = new Point(8, 196);
         IVstyle.Name = "IVstyle";
-        IVstyle.Size = new Size(138, 28);
+        IVstyle.Size = new Size(121, 23);
         IVstyle.TabIndex = 8;
         // 
         // IVverbose
         // 
         IVverbose.AutoSize = true;
-        IVverbose.Location = new Point(9, 196);
-        IVverbose.Margin = new Padding(3, 4, 3, 4);
+        IVverbose.Location = new Point(8, 147);
         IVverbose.Name = "IVverbose";
-        IVverbose.Size = new Size(106, 24);
+        IVverbose.Size = new Size(85, 19);
         IVverbose.TabIndex = 5;
         IVverbose.Text = "Verbose IVs";
         IVverbose.UseVisualStyleBackColor = true;
@@ -959,9 +969,9 @@ partial class ConfigWindow
         // 
         label19.AutoSize = true;
         label19.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-        label19.Location = new Point(8, 237);
+        label19.Location = new Point(7, 178);
         label19.Name = "label19";
-        label19.Size = new Size(61, 20);
+        label19.Size = new Size(48, 15);
         label19.TabIndex = 2;
         label19.Text = "IV style";
         // 
@@ -969,9 +979,9 @@ partial class ConfigWindow
         // 
         label18.AutoSize = true;
         label18.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-        label18.Location = new Point(8, 172);
+        label18.Location = new Point(7, 129);
         label18.Name = "label18";
-        label18.Size = new Size(85, 20);
+        label18.Size = new Size(68, 15);
         label18.TabIndex = 1;
         label18.Text = "IV Settings";
         // 
@@ -980,10 +990,9 @@ partial class ConfigWindow
         EnableEmoji.AutoSize = true;
         EnableEmoji.Checked = true;
         EnableEmoji.CheckState = CheckState.Checked;
-        EnableEmoji.Location = new Point(9, 92);
-        EnableEmoji.Margin = new Padding(3, 4, 3, 4);
+        EnableEmoji.Location = new Point(8, 69);
         EnableEmoji.Name = "EnableEmoji";
-        EnableEmoji.Size = new Size(118, 24);
+        EnableEmoji.Size = new Size(93, 19);
         EnableEmoji.TabIndex = 0;
         EnableEmoji.Text = "Enable Emoji";
         EnableEmoji.UseVisualStyleBackColor = true;
@@ -994,29 +1003,27 @@ partial class ConfigWindow
         tabExperimental.Controls.Add(label17);
         tabExperimental.Controls.Add(label13);
         tabExperimental.Controls.Add(ExperimentalView);
-        tabExperimental.Location = new Point(4, 29);
-        tabExperimental.Margin = new Padding(3, 4, 3, 4);
+        tabExperimental.Location = new Point(4, 24);
         tabExperimental.Name = "tabExperimental";
-        tabExperimental.Padding = new Padding(3, 4, 3, 4);
-        tabExperimental.Size = new Size(426, 733);
+        tabExperimental.Padding = new Padding(3);
+        tabExperimental.Size = new Size(372, 546);
         tabExperimental.TabIndex = 2;
         tabExperimental.Text = "Experimental";
         tabExperimental.UseVisualStyleBackColor = true;
         // 
         // InstanceName
         // 
-        InstanceName.Location = new Point(7, 84);
-        InstanceName.Margin = new Padding(3, 4, 3, 4);
+        InstanceName.Location = new Point(6, 63);
         InstanceName.Name = "InstanceName";
-        InstanceName.Size = new Size(409, 27);
+        InstanceName.Size = new Size(358, 23);
         InstanceName.TabIndex = 42;
         // 
         // label17
         // 
         label17.AutoSize = true;
-        label17.Location = new Point(7, 60);
+        label17.Location = new Point(6, 45);
         label17.Name = "label17";
-        label17.Size = new Size(110, 20);
+        label17.Size = new Size(88, 15);
         label17.TabIndex = 41;
         label17.Text = "Instance Name:";
         // 
@@ -1026,11 +1033,10 @@ partial class ConfigWindow
         tabAbout.Controls.Add(labelAppName);
         tabAbout.Controls.Add(picAppIcon);
         tabAbout.Controls.Add(labelAppVersion);
-        tabAbout.Location = new Point(4, 29);
-        tabAbout.Margin = new Padding(3, 4, 3, 4);
+        tabAbout.Location = new Point(4, 24);
         tabAbout.Name = "tabAbout";
-        tabAbout.Padding = new Padding(3, 4, 3, 4);
-        tabAbout.Size = new Size(426, 733);
+        tabAbout.Padding = new Padding(3);
+        tabAbout.Size = new Size(372, 546);
         tabAbout.TabIndex = 4;
         tabAbout.Text = "About";
         tabAbout.UseVisualStyleBackColor = true;
@@ -1038,9 +1044,9 @@ partial class ConfigWindow
         // linkLabel1
         // 
         linkLabel1.AutoSize = true;
-        linkLabel1.Location = new Point(65, 265);
+        linkLabel1.Location = new Point(57, 199);
         linkLabel1.Name = "linkLabel1";
-        linkLabel1.Size = new Size(314, 20);
+        linkLabel1.Size = new Size(251, 15);
         linkLabel1.TabIndex = 4;
         linkLabel1.TabStop = true;
         linkLabel1.Text = "https://github.com/LegoFigure11/RaidCrawler";
@@ -1050,9 +1056,9 @@ partial class ConfigWindow
         // 
         labelAppName.AutoSize = true;
         labelAppName.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-        labelAppName.Location = new Point(157, 120);
+        labelAppName.Location = new Point(137, 90);
         labelAppName.Name = "labelAppName";
-        labelAppName.Size = new Size(152, 32);
+        labelAppName.Size = new Size(119, 25);
         labelAppName.TabIndex = 2;
         labelAppName.Text = "RaidCrawler";
         labelAppName.TextAlign = ContentAlignment.MiddleCenter;
@@ -1060,52 +1066,29 @@ partial class ConfigWindow
         // picAppIcon
         // 
         picAppIcon.Image = (Image)resources.GetObject("picAppIcon.Image");
-        picAppIcon.Location = new Point(123, 113);
-        picAppIcon.Margin = new Padding(3, 4, 3, 4);
+        picAppIcon.Location = new Point(108, 85);
         picAppIcon.Name = "picAppIcon";
-        picAppIcon.Size = new Size(37, 43);
+        picAppIcon.Size = new Size(32, 32);
         picAppIcon.TabIndex = 1;
         picAppIcon.TabStop = false;
         // 
         // labelAppVersion
         // 
         labelAppVersion.AutoSize = true;
-        labelAppVersion.Location = new Point(179, 176);
+        labelAppVersion.Location = new Point(157, 132);
         labelAppVersion.Name = "labelAppVersion";
-        labelAppVersion.Size = new Size(100, 20);
+        labelAppVersion.Size = new Size(78, 15);
         labelAppVersion.TabIndex = 0;
         labelAppVersion.Text = "v0.0.0-000000";
         labelAppVersion.TextAlign = ContentAlignment.MiddleCenter;
         // 
-        // ScanFieldGruop
-        // 
-        ScanFieldGruop.Controls.Add(EncounterTypeCombo);
-        ScanFieldGruop.Location = new Point(9, 331);
-        ScanFieldGruop.Name = "ScanFieldGruop";
-        ScanFieldGruop.Size = new Size(200, 88);
-        ScanFieldGruop.TabIndex = 116;
-        ScanFieldGruop.TabStop = false;
-        ScanFieldGruop.Text = "Scan Fields";
-        // 
-        // EncounterTypeCombo
-        // 
-        EncounterTypeCombo.FormattingEnabled = true;
-        EncounterTypeCombo.Items.AddRange(new object[] { "WildEncounter", "NonWildEncounter" });
-        EncounterTypeCombo.Location = new Point(12, 39);
-        EncounterTypeCombo.Margin = new Padding(3, 4, 3, 4);
-        EncounterTypeCombo.Name = "EncounterTypeCombo";
-        EncounterTypeCombo.Size = new Size(136, 28);
-        EncounterTypeCombo.TabIndex = 117;
-        EncounterTypeCombo.Text = "WildEnconter";
-        // 
         // ConfigWindow
         // 
-        AutoScaleDimensions = new SizeF(8F, 20F);
+        AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(434, 766);
+        ClientSize = new Size(380, 574);
         Controls.Add(tabControl1);
         FormBorderStyle = FormBorderStyle.FixedDialog;
-        Margin = new Padding(3, 4, 3, 4);
         MaximizeBox = false;
         Name = "ConfigWindow";
         StartPosition = FormStartPosition.CenterParent;
@@ -1126,6 +1109,7 @@ partial class ConfigWindow
         tabControl1.ResumeLayout(false);
         tabGeneral.ResumeLayout(false);
         tabGeneral.PerformLayout();
+        ScanFieldGruop.ResumeLayout(false);
         LocationGroup.ResumeLayout(false);
         tabMatch.ResumeLayout(false);
         tabMatch.PerformLayout();
@@ -1141,7 +1125,6 @@ partial class ConfigWindow
         tabAbout.ResumeLayout(false);
         tabAbout.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)picAppIcon).EndInit();
-        ScanFieldGruop.ResumeLayout(false);
         ResumeLayout(false);
     }
     #endregion
@@ -1233,4 +1216,6 @@ partial class ConfigWindow
     private CheckBox BlueberryScanCheck;
     private GroupBox ScanFieldGruop;
     private ComboBox EncounterTypeCombo;
+    private ComboBox TimeZoneCombo;
+    private Label TimeZonelabel;
 }

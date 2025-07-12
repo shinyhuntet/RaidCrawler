@@ -26,6 +26,7 @@ public class ClientConfig : IDateAdvanceConfig, IWebhookConfig
     public bool EnableNotification { get; set; } = false;
     public string DiscordWebhook { get; set; } = string.Empty;
     public string DiscordMessageContent { get; set; } = string.Empty;
+    public string TimeZoneID { get; set; } = string.Empty;
 
     // Date Advance
     public bool UseTouch { get; set; } = false;

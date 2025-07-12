@@ -76,6 +76,9 @@ public class NotificationHandler(IWebhookConfig config)
 
     private object GenerateWebhook(ITeraRaid encounter, Raid raid, RaidFilter filter, string time, IReadOnlyList<(int, int, int)> rewardsList, string hexColor, string spriteName)
     {
+        var Date = DateTimeOffset.UtcNow;
+        var TimeZone = string.IsNullOrEmpty(config.TimeZoneID) ? TimeZoneInfo.Local : TimeZoneInfo.FindSystemTimeZoneById(config.TimeZoneID);
+        var DisplayDate = TimeZoneInfo.ConvertTime(Date.DateTime, TimeZone);
         var strings = GameInfo.GetStrings("en");
         var param = encounter.GetParam();
         var blank = new PK9 { Species = encounter.Species, Form = encounter.Form };
@@ -116,12 +119,13 @@ public class NotificationHandler(IWebhookConfig config)
                 new
                 {
                     title = $"{shiny} {species} {gender} {teraemoji}",
-                    description = "",
+                    description = "Raid Pokemon Info",
                     color = int.Parse(hexColor, NumberStyles.HexNumber),
                     thumbnail = new
                     {
                         url = $"https://github.com/kwsch/PKHeX/blob/master/PKHeX.Drawing.PokeSprite/Resources/img/Artwork%20Pokemon%20Sprites/a{spriteName}.png?raw=true",
                     },
+                    timestamp = DisplayDate.ToString("yyyy-MM-dd HH:mm:ss"),
                     fields = new List<object>
                     {
                         new

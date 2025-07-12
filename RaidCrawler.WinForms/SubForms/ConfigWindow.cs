@@ -14,6 +14,9 @@ public partial class ConfigWindow : Form
         var shaField = gitVersionInformationType?.GetField("ShortSha");
 
         InitializeComponent();
+        TimeZoneCombo.DataSource = TimeZoneInfo.GetSystemTimeZones();
+        TimeZoneCombo.DisplayMember = "DisplayName";
+        TimeZoneCombo.ValueMember = "Id";
 
         this.c = c;
 
@@ -63,6 +66,7 @@ public partial class ConfigWindow : Form
 
         IVstyle.SelectedIndex = c.IVsStyle;
         IVverbose.Checked = c.VerboseIVs;
+        TimeZoneCombo.SelectedIndex = string.IsNullOrEmpty(c.TimeZoneID) ? -1 : TimeZoneInfo.GetSystemTimeZones().ToList().FindIndex(tz => tz.Id == c.TimeZoneID);
 
         denToggle.Checked = c.ToggleDen;
 
@@ -129,6 +133,7 @@ public partial class ConfigWindow : Form
 
         c.IVsStyle = IVstyle.SelectedIndex;
         c.VerboseIVs = IVverbose.Checked;
+        c.TimeZoneID = TimeZoneCombo.SelectedIndex < 0 ? string.Empty : TimeZoneCombo.Items.Cast<TimeZoneInfo>().ToList()[TimeZoneCombo.SelectedIndex].Id;
 
         c.EnableEmoji = EnableEmoji.Checked;
 
