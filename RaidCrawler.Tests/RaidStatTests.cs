@@ -39,9 +39,11 @@ public class RaidStatTests : TestUtil
         };
 
         Encounter9RNG.GenerateData(blank, param, EncounterCriteria.Unrestricted, raid.Seed);
-        var encIVs = Utils.ToSpeedLast(blank.IVs);
+        Span<int> _ivs = stackalloc int[6];
+        blank.GetIVs(_ivs);
+        var encIVs = Utils.ToSpeedLast(_ivs);
         encIVs.SequenceEqual(ivs).Should().BeTrue();
-        blank.Nature.Should().Be((int)nature);
+        blank.Nature.Should().Be((nature));
         blank.IsShiny.Should().Be(shiny);
     }
 }
