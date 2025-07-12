@@ -2,6 +2,7 @@ using PKHeX.Core;
 using RaidCrawler.Core.Interfaces;
 using RaidCrawler.Core.Structures;
 using SysBot.Base;
+using System;
 using System.Globalization;
 using System.Text;
 using System.Text.Json;
@@ -14,13 +15,13 @@ public class NotificationHandler(IWebhookConfig config)
     private readonly string[]? DiscordWebhooks = config.EnableNotification ? config.DiscordWebhook.Split(',') : null;
 
     public async Task SendNotification(ITeraRaid encounter, Raid raid, RaidFilter filter, string time, IReadOnlyList<(int, int, int)> RewardsList,
-        string hexColor, string spriteName, CancellationToken token
+        string hexColor, string spriteName, SimpleTrainerInfo Trainer, CancellationToken token
     )
     {
         if (DiscordWebhooks is null || !config.EnableNotification)
             return;
 
-        var webhook = GenerateWebhook(encounter, raid, filter, time, RewardsList, hexColor, spriteName);
+        var webhook = GenerateWebhook(encounter, raid, filter, time, RewardsList, hexColor, spriteName, Trainer);
         var content = new StringContent(JsonSerializer.Serialize(webhook), Encoding.UTF8, "application/json");
         foreach (var url in DiscordWebhooks)
             await _client.PostAsync(url.Trim(), content, token).ConfigureAwait(false);
@@ -74,11 +75,12 @@ public class NotificationHandler(IWebhookConfig config)
             await _client.PostAsync(url.Trim(), content, token).ConfigureAwait(false);
     }
 
-    private object GenerateWebhook(ITeraRaid encounter, Raid raid, RaidFilter filter, string time, IReadOnlyList<(int, int, int)> rewardsList, string hexColor, string spriteName)
+    private object GenerateWebhook(ITeraRaid encounter, Raid raid, RaidFilter filter, string time, IReadOnlyList<(int, int, int)> rewardsList, string hexColor, string spriteName, SimpleTrainerInfo Trainer)
     {
         var Date = DateTimeOffset.UtcNow;
         var TimeZone = string.IsNullOrEmpty(config.TimeZoneID) ? TimeZoneInfo.Local : TimeZoneInfo.FindSystemTimeZoneById(config.TimeZoneID);
         var DisplayDate = TimeZoneInfo.ConvertTime(Date.DateTime, TimeZone);
+        var trainerID = GetTrainerID32(Trainer.TID16, Trainer.SID16);
         var strings = GameInfo.GetStrings("en");
         var param = encounter.GetParam();
         var blank = new PK9 { Species = encounter.Species, Form = encounter.Form };
@@ -109,6 +111,7 @@ public class NotificationHandler(IWebhookConfig config)
         var extramoves = string.Concat(encounter.ExtraMoves.Where(z => z != 0).Select(z => "- " + config.Emoji[strings.Types[MoveInfo.GetType(z, blank.Context)]] + $" {strings.Move[z]}ㅤ\n")).Trim();
         var area = $"{Areas.GetArea((int)(raid.Area - 1), raid.MapParent)}" + (config.ToggleDen ? $" [Den {raid.Den}]ㅤ" : "ㅤ");
         var rewards = GetRewards(rewardsList);
+        var authorData = GetAuthor(encounter.Stars, teratype, raid.IsEvent, raid.IsBlack);
         var SuccessWebHook = new
         {
             username = "RaidCrawler " + config.InstanceName,
@@ -126,7 +129,17 @@ public class NotificationHandler(IWebhookConfig config)
                         url = $"https://github.com/kwsch/PKHeX/blob/master/PKHeX.Drawing.PokeSprite/Resources/img/Artwork%20Pokemon%20Sprites/a{spriteName}.png?raw=true",
                     },
                     timestamp = DisplayDate.ToString("yyyy-MM-dd HH:mm:ss"),
-                    fields = new List<object>
+                    author = new
+                    {
+                        text = authorData.Item1,
+                        icon_url = authorData.Item2,
+                    },
+                    footer = new
+                    {
+                        text = $"Trainer Info{Environment.NewLine}OT:{Trainer.OT} | TID:{(blank.TrainerIDDisplayFormat == TrainerIDFormat.SixDigit ? trainerID % 1000000 : Trainer.TID16)} | SID:{(blank.TrainerIDDisplayFormat == TrainerIDFormat.SixDigit ? trainerID / 1000000 : Trainer.SID16)}\nLanguage: {(LanguageID)Trainer.Language}\nTimeZone: {TimeZone.StandardName}",
+                        icon_url = "https://raw.githubusercontent.com/kwsch/PKHeX/master/PKHeX.Drawing.PokeSprite/Resources/img/ball/_ball25.png"
+                    },
+                        fields = new List<object>
                     {
                         new
                         {
@@ -193,6 +206,21 @@ public class NotificationHandler(IWebhookConfig config)
             },
         };
         return SuccessWebHook;
+    }
+
+    private (string, string) GetAuthor(byte stars, int teratype, bool isEvent, bool isBlack)
+    {
+        var author = stars == 7 ? "Mightest Raid" : isEvent ? "Event Raid " : $"{stars} Star Tera Raid ";
+        var icon_url = stars == 7 ? "https://raw.githubusercontent.com/kwsch/PKHeX/master/PKHeX.Drawing.Misc/Resources/img/ribbons/mightiestmark.png" :
+            isEvent || isBlack ? $"https://raw.githubusercontent.com/shinyhuntet/RaidCrawler/main/RaidCrawler.WinForms/Resources/black_{teratype:D2}.png" :
+            $"https://raw.githubusercontent.com/shinyhuntet/RaidCrawler/main/RaidCrawler.WinForms/Resources/gem_{teratype:D2}.png";
+
+        return(author, icon_url);
+    }
+
+    private uint GetTrainerID32(ushort tid16, ushort sid16)
+    {
+        return (uint)((sid16 << 16) | tid16);
     }
 
     private string Difficulty(byte stars, bool isEvent)

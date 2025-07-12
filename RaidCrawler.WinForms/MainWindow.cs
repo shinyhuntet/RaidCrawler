@@ -17,6 +17,8 @@ using System.Text.Json;
 using static RaidCrawler.Core.Structures.Offsets;
 using static System.Buffers.Binary.BinaryPrimitives;
 using static SysBot.Base.SwitchButton;
+using System.CodeDom.Compiler;
+using Microsoft.VisualBasic;
 
 namespace RaidCrawler.WinForms
 {
@@ -619,6 +621,7 @@ namespace RaidCrawler.WinForms
 
                     if (Config.EnableNotification)
                     {
+                        var Trainer = await GetFakeTrainerSAVSV(token).ConfigureAwait(false);
                         foreach (var satisfied in satisfiedFilters)
                         {
                             var teraType = satisfied.Item3.GetTeraType(satisfied.Item2);
@@ -635,7 +638,7 @@ namespace RaidCrawler.WinForms
                                 satisfied.Item3.CheckIsShiny(satisfied.Item2)
                             );
                             await Webhook
-                                .SendNotification(satisfied.Item2, satisfied.Item3, satisfied.Item1, time, satisfied.Item4, hexColor, spriteName, Source.Token)
+                                .SendNotification(satisfied.Item2, satisfied.Item3, satisfied.Item1, time, satisfied.Item4, hexColor, spriteName, Trainer, Source.Token)
                                 .ConfigureAwait(false);
                         }
                     }
@@ -1203,7 +1206,7 @@ namespace RaidCrawler.WinForms
                 var imagestring = PokeImg(blank, false);
                 PictureBox image = new();
                 image.Load(imagestring);
-                var img = ApplyTeraColor((byte)teratype, image.Image, SpriteBackgroundType.BottomStripe);
+                var img = ApplyTeraColor((byte)teratype, image.Image!, SpriteBackgroundType.BottomStripe);
                 Shiny shiny = blank.IsShiny ? blank.ShinyXor == 0 ? Shiny.AlwaysSquare : Shiny.AlwaysStar : Shiny.Never;
                 if (shiny.IsShiny())
                     img = LayerOverImageShiny(img, shiny);
@@ -2052,6 +2055,21 @@ namespace RaidCrawler.WinForms
             var data = await ConnectionWrapper.Connection.ReadBytesAbsoluteAsync(offset, 1, token).ConfigureAwait(false);
             return data[0] == 0x11;
         }
+        public async Task<SimpleTrainerInfo> GetFakeTrainerSAVSV(CancellationToken token)
+        {
+            var sav = new SAV9SV();
+            var info = sav.MyStatus;
+            var read = await ConnectionWrapper.Connection.PointerPeek(info.Data.Length, ConnectionWrapper.MyStatusPointerSV, token).ConfigureAwait(false);
+            read.CopyTo(info.Data);
+            SimpleTrainerInfo Trainer = new()
+            {
+                OT = sav.OT,
+                TID16 = sav.TID16,
+                SID16 = sav.SID16,
+                Language = sav.Language,
+            };
+            return Trainer;
+        }
 
         public async Task PreReOpenGame(CancellationToken token)
         {
@@ -2425,6 +2443,7 @@ namespace RaidCrawler.WinForms
                 i = Invoke(() => { return ComboIndex.SelectedIndex; });
             else i = ComboIndex.SelectedIndex;
 
+            var Trainer = await GetFakeTrainerSAVSV(token).ConfigureAwait(false);
             var raids = RaidContainer.Container.Raids;
             var encounters = RaidContainer.Container.Encounters;
             var rewards = RaidContainer.Container.Rewards;
@@ -2445,7 +2464,7 @@ namespace RaidCrawler.WinForms
                 blank.SetSuggestedFormArgument();
 
                 var spriteName = GetSpriteNameForUrl(blank, raids[i].CheckIsShiny(encounters[i]));
-                await Webhook.SendNotification(encounters[i], raids[i], filter, time, rewards[i], hexColor, spriteName, token).ConfigureAwait(false);
+                await Webhook.SendNotification(encounters[i], raids[i], filter, time, rewards[i], hexColor, spriteName, Trainer, token).ConfigureAwait(false);
             }
             else { ShowMessageBox("Please connect to your device and ensure a raid has been found."); }
         }
