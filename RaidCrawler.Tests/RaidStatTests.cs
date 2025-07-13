@@ -38,7 +38,7 @@ public class RaidStatTests : TestUtil
             Form = enc.Form
         };
 
-        Encounter9RNG.GenerateData(blank, param, EncounterCriteria.Unrestricted, raid.Seed);
+        raid.GenerateDataPK9(blank, param, enc.Shiny, raid.Seed);
         Span<int> _ivs = stackalloc int[6];
         blank.GetIVs(_ivs);
         var encIVs = Utils.ToSpeedLast(_ivs);
