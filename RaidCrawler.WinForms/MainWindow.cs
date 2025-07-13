@@ -19,6 +19,7 @@ using static System.Buffers.Binary.BinaryPrimitives;
 using static SysBot.Base.SwitchButton;
 using System.CodeDom.Compiler;
 using Microsoft.VisualBasic;
+using System.Threading.Tasks;
 
 namespace RaidCrawler.WinForms
 {
@@ -66,6 +67,7 @@ namespace RaidCrawler.WinForms
         private TeraRaidView? teraRaidView;
         public static ulong BaseBlockKeyPointer = 0;
         ulong PlayerOnMountOffset = 0;
+        private SimpleTrainerInfo Trainer = new();
         private bool StopAdvances => !Config.EnableFilters || RaidFilters.Count == 0 || RaidFilters.All(x => !x.Enabled);
         private readonly Version CurrentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version!;
 
@@ -401,6 +403,17 @@ namespace RaidCrawler.WinForms
                     ShowMessageBox($"Error occurred while cheking ohko state: {ex.Message}");
                     return;
                 }
+                UpdateStatus("Reading Trainer Info...");
+                try
+                {
+                    Trainer = await GetFakeTrainerSAVSV(token).ConfigureAwait(false);
+                }
+                catch(Exception ex)
+                {
+                    ButtonEnable(new[] { ButtonConnect }, true);
+                    ShowMessageBox($"Error occurred while reading trainer info: {ex.Message}");
+                    return;
+                }
                 ButtonEnable(new[] { ButtonAdvanceDate, ButtonReadRaids, ButtonDisconnect, ButtonViewRAM, ButtonDownloadEvents, SendScreenshot, btnOpenMap, Rewards, TeleportToDenButton, EventRaidReset, OHKO, ResetRaids, SetTime, CurrentTimeButton, DateTimeButton }, true);
                 Identifier.Enabled = true;
                 if (InvokeRequired)
@@ -621,7 +634,6 @@ namespace RaidCrawler.WinForms
 
                     if (Config.EnableNotification)
                     {
-                        var Trainer = await GetFakeTrainerSAVSV(token).ConfigureAwait(false);
                         foreach (var satisfied in satisfiedFilters)
                         {
                             var teraType = satisfied.Item3.GetTeraType(satisfied.Item2);
@@ -1174,7 +1186,7 @@ namespace RaidCrawler.WinForms
         }
 
 
-        private void DisplayRaid()
+        private async void DisplayRaid()
         {
             int index = ComboIndex.SelectedIndex;
             var raids = RaidContainer.Container.Raids;
@@ -1203,10 +1215,8 @@ namespace RaidCrawler.WinForms
                 };
 
                 raid.GenerateDataPK9(blank, param, encounter.Shiny, raid.Seed);
-                var imagestring = PokeImg(blank, false);
-                PictureBox image = new();
-                image.Load(imagestring);
-                var img = ApplyTeraColor((byte)teratype, image.Image!, SpriteBackgroundType.BottomStripe);
+                Image PokemonImg = await Utils.GetPokemonImage(blank);
+                var img = ApplyTeraColor((byte)teratype, PokemonImg, SpriteBackgroundType.BottomStripe);
                 Shiny shiny = blank.IsShiny ? blank.ShinyXor == 0 ? Shiny.AlwaysSquare : Shiny.AlwaysStar : Shiny.Never;
                 if (shiny.IsShiny())
                     img = LayerOverImageShiny(img, shiny);
@@ -1286,7 +1296,7 @@ namespace RaidCrawler.WinForms
             return baseImg;
         }
 
-        private void DisplayPrettyRaid()
+        private async void DisplayPrettyRaid()
         {
             if (teraRaidView is null)
             {
@@ -1318,10 +1328,9 @@ namespace RaidCrawler.WinForms
                         Form = encounter.Form
                     };
 
-                    raid.GenerateDataPK9(blank, param, encounter.Shiny, raid.Seed);
-                    var img = blank.Sprite();
+                    raid.GenerateDataPK9(blank, param, encounter.Shiny, raid.Seed);                    
 
-                    teraRaidView.picBoxPokemon.Image = img;
+                    teraRaidView.picBoxPokemon.Image = await Utils.GetPokemonImage(blank);
                     var form = Utils.GetFormString(blank.Species, blank.Form, raid.Strings);
 
                     teraRaidView.Species.Text = $"{RaidContainer.Strings.Species[encounter.Species]}{form}";
@@ -2443,7 +2452,6 @@ namespace RaidCrawler.WinForms
                 i = Invoke(() => { return ComboIndex.SelectedIndex; });
             else i = ComboIndex.SelectedIndex;
 
-            var Trainer = await GetFakeTrainerSAVSV(token).ConfigureAwait(false);
             var raids = RaidContainer.Container.Raids;
             var encounters = RaidContainer.Container.Encounters;
             var rewards = RaidContainer.Container.Rewards;
@@ -2759,56 +2767,6 @@ namespace RaidCrawler.WinForms
                 else start = mid + 48;
             }
             return start;
-        }
-        public static string PokeImg(PKM pkm, bool canGmax)
-        {
-            bool md = false;
-            bool fd = false;
-            string[] baseLink;
-            baseLink = "https://raw.githubusercontent.com/zyro670/HomeImages/master/128x128/poke_capture_0001_000_mf_n_00000000_f_n.png".Split('_');
-
-            if (Enum.IsDefined(typeof(GenderDependent), pkm.Species) && !canGmax && pkm.Form is 0)
-            {
-                if (pkm.Gender is 0 && pkm.Species is not (ushort)PKHeX.Core.Species.Torchic)
-                    md = true;
-                else fd = true;
-            }
-
-            int form = pkm.Species switch
-            {
-                (ushort)PKHeX.Core.Species.Sinistea or (ushort)PKHeX.Core.Species.Polteageist or (ushort)PKHeX.Core.Species.Rockruff or (ushort)PKHeX.Core.Species.Mothim => 0,
-                (ushort)PKHeX.Core.Species.Alcremie when pkm.IsShiny || canGmax => 0,
-                _ => pkm.Form,
-
-            };
-            if (pkm.Species is (ushort)PKHeX.Core.Species.Sneasel)
-            {
-                if (pkm.Gender is 0)
-                    md = true;
-                else fd = true;
-            }
-
-            if (pkm.Species is (ushort)PKHeX.Core.Species.Basculegion)
-            {
-                if (pkm.Gender is 0)
-                {
-                    md = true;
-                    pkm.Form = 0;
-                }
-                else { pkm.Form = 1; }
-
-                string s = pkm.IsShiny ? "r" : "n";
-                string g = md && pkm.Gender is not 1 ? "md" : "fd";
-                return $"https://raw.githubusercontent.com/zyro670/HomeImages/master/128x128/poke_capture_0" + $"{pkm.Species}" + "_00" + $"{pkm.Form}" + "_" + $"{g}" + "_n_00000000_f_" + $"{s}" + ".png";
-            }
-
-            baseLink[2] = pkm.Species < 10 ? $"000{pkm.Species}" : pkm.Species < 100 && pkm.Species > 9 ? $"00{pkm.Species}" : pkm.Species >= 1000 ? $"{pkm.Species}" : $"0{pkm.Species}";
-            baseLink[3] = pkm.Form < 10 ? $"00{form}" : $"0{form}";
-            baseLink[4] = pkm.PersonalInfo.OnlyFemale ? "fo" : pkm.PersonalInfo.OnlyMale ? "mo" : pkm.PersonalInfo.Genderless ? "uk" : fd ? "fd" : md ? "md" : "mf";
-            baseLink[5] = canGmax ? "g" : "n";
-            baseLink[6] = "0000000" + (pkm.Species is (ushort)PKHeX.Core.Species.Alcremie && !canGmax ? pkm.Data[0xE4] : 0);
-            baseLink[8] = pkm.IsShiny ? "r.png" : "n.png";
-            return string.Join("_", baseLink);
         }
         public static byte[] DecryptBlock(uint key, byte[] block)
         {

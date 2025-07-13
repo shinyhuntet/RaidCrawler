@@ -1,4 +1,4 @@
-﻿namespace RaidCrawler.WinForms.SubForms
+namespace RaidCrawler.WinForms.SubForms
 {
     partial class TeraRaidView
     {
@@ -124,7 +124,7 @@
             // 
             Area.BackColor = Color.FromArgb(0, 5, 25);
             Area.BorderStyle = BorderStyle.None;
-            Area.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            Area.Font = new Font("Segoe UI", 14F);
             Area.ForeColor = SystemColors.GradientInactiveCaption;
             Area.Location = new Point(564, 12);
             Area.Name = "Area";
@@ -145,7 +145,7 @@
             // Difficulty
             // 
             Difficulty.BackColor = Color.FromArgb(0, 5, 25);
-            Difficulty.Font = new Font("Segoe UI Emoji", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            Difficulty.Font = new Font("Segoe UI Emoji", 16F, FontStyle.Bold);
             Difficulty.ForeColor = Color.LemonChiffon;
             Difficulty.Location = new Point(64, 143);
             Difficulty.Name = "Difficulty";
@@ -157,7 +157,7 @@
             // Species
             // 
             Species.BackColor = Color.FromArgb(0, 5, 25);
-            Species.Font = new Font("Segoe UI", 32F, FontStyle.Bold, GraphicsUnit.Point);
+            Species.Font = new Font("Segoe UI", 32F, FontStyle.Bold);
             Species.ForeColor = SystemColors.ControlLightLight;
             Species.Location = new Point(12, 32);
             Species.Name = "Species";
@@ -169,7 +169,7 @@
             // Shiny
             // 
             Shiny.AutoSize = true;
-            Shiny.Font = new Font("Consolas", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            Shiny.Font = new Font("Consolas", 16F, FontStyle.Bold);
             Shiny.ForeColor = Color.Gold;
             Shiny.Location = new Point(110, 20);
             Shiny.Name = "Shiny";
@@ -182,7 +182,7 @@
             // Gender
             // 
             Gender.BackColor = Color.FromArgb(0, 5, 25);
-            Gender.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Gender.Font = new Font("Segoe UI", 12F);
             Gender.ForeColor = SystemColors.ActiveCaption;
             Gender.Location = new Point(406, 146);
             Gender.Name = "Gender";
@@ -203,7 +203,7 @@
             // Ability
             // 
             Ability.BackColor = Color.FromArgb(0, 5, 25);
-            Ability.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            Ability.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             Ability.ForeColor = SystemColors.ActiveCaption;
             Ability.Location = new Point(72, 22);
             Ability.Name = "Ability";
@@ -214,7 +214,7 @@
             // Nature
             // 
             Nature.BackColor = Color.FromArgb(0, 5, 25);
-            Nature.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            Nature.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             Nature.ForeColor = SystemColors.ActiveCaption;
             Nature.Location = new Point(328, 22);
             Nature.Name = "Nature";
@@ -225,13 +225,13 @@
             // PokemonScale
             // 
             PokemonScale.BackColor = Color.FromArgb(0, 5, 25);
-            PokemonScale.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            PokemonScale.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             PokemonScale.ForeColor = SystemColors.ActiveCaption;
             PokemonScale.Location = new Point(328, 22);
-            PokemonScale.Name = "Scale";
-            PokemonScale.Size = new Size(47, 22);
-            PokemonScale.TabIndex = 162;
+            PokemonScale.Name = "PokemonScale";
             PokemonScale.ReadOnly = true;
+            PokemonScale.Size = new Size(47, 32);
+            PokemonScale.TabIndex = 162;
             // 
             // groupBox1
             // 
@@ -254,18 +254,7 @@
             label1.ForeColor = Color.Silver;
             label1.Location = new Point(278, 29);
             label1.Name = "label1";
-            label1.Size = new Size(46, 15);
-            label1.TabIndex = 124;
-            label1.Text = "Nature:";
-            label1.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // labelScale
-            // 
-            label1.AutoSize = true;
-            label1.ForeColor = Color.Silver;
-            label1.Location = new Point(278, 29);
-            label1.Name = "labelScale";
-            label1.Size = new Size(46, 15);
+            label1.Size = new Size(34, 15);
             label1.TabIndex = 163;
             label1.Text = "Scale";
             label1.TextAlign = ContentAlignment.MiddleRight;
@@ -307,7 +296,7 @@
             // 
             labelSpeed.AutoSize = true;
             labelSpeed.ForeColor = Color.Silver;
-            labelSpeed.Location = new Point(407, 29);
+            labelSpeed.Location = new Point(396, 29);
             labelSpeed.Name = "labelSpeed";
             labelSpeed.Size = new Size(42, 15);
             labelSpeed.TabIndex = 133;
@@ -316,12 +305,13 @@
             // 
             // SPEED
             // 
+            SPEED.AutoSize = true;
             SPEED.BackColor = Color.FromArgb(0, 5, 25);
-            SPEED.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            SPEED.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             SPEED.ForeColor = Color.White;
-            SPEED.Location = new Point(449, 22);
+            SPEED.Location = new Point(444, 21);
             SPEED.Name = "SPEED";
-            SPEED.Size = new Size(36, 25);
+            SPEED.Size = new Size(34, 25);
             SPEED.TabIndex = 132;
             SPEED.Text = "00";
             SPEED.TextAlign = ContentAlignment.BottomCenter;
@@ -330,7 +320,7 @@
             // 
             labelSpD.AutoSize = true;
             labelSpD.ForeColor = Color.Silver;
-            labelSpD.Location = new Point(336, 29);
+            labelSpD.Location = new Point(319, 29);
             labelSpD.Name = "labelSpD";
             labelSpD.Size = new Size(31, 15);
             labelSpD.TabIndex = 131;
@@ -339,12 +329,13 @@
             // 
             // SPD
             // 
+            SPD.AutoSize = true;
             SPD.BackColor = Color.FromArgb(0, 5, 25);
-            SPD.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            SPD.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             SPD.ForeColor = Color.White;
-            SPD.Location = new Point(367, 22);
+            SPD.Location = new Point(356, 21);
             SPD.Name = "SPD";
-            SPD.Size = new Size(36, 25);
+            SPD.Size = new Size(34, 25);
             SPD.TabIndex = 130;
             SPD.Text = "00";
             SPD.TextAlign = ContentAlignment.BottomCenter;
@@ -353,7 +344,7 @@
             // 
             labelSpA.AutoSize = true;
             labelSpA.ForeColor = Color.Silver;
-            labelSpA.Location = new Point(265, 29);
+            labelSpA.Location = new Point(242, 29);
             labelSpA.Name = "labelSpA";
             labelSpA.Size = new Size(31, 15);
             labelSpA.TabIndex = 129;
@@ -362,12 +353,13 @@
             // 
             // SPA
             // 
+            SPA.AutoSize = true;
             SPA.BackColor = Color.FromArgb(0, 5, 25);
-            SPA.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            SPA.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             SPA.ForeColor = Color.White;
-            SPA.Location = new Point(297, 22);
+            SPA.Location = new Point(279, 21);
             SPA.Name = "SPA";
-            SPA.Size = new Size(36, 25);
+            SPA.Size = new Size(34, 25);
             SPA.TabIndex = 128;
             SPA.Text = "00";
             SPA.TextAlign = ContentAlignment.BottomCenter;
@@ -376,7 +368,7 @@
             // 
             labelDef.AutoSize = true;
             labelDef.ForeColor = Color.Silver;
-            labelDef.Location = new Point(197, 29);
+            labelDef.Location = new Point(168, 29);
             labelDef.Name = "labelDef";
             labelDef.Size = new Size(28, 15);
             labelDef.TabIndex = 127;
@@ -385,12 +377,13 @@
             // 
             // DEF
             // 
+            DEF.AutoSize = true;
             DEF.BackColor = Color.FromArgb(0, 5, 25);
-            DEF.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            DEF.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             DEF.ForeColor = Color.White;
-            DEF.Location = new Point(226, 22);
+            DEF.Location = new Point(202, 21);
             DEF.Name = "DEF";
-            DEF.Size = new Size(36, 25);
+            DEF.Size = new Size(34, 25);
             DEF.TabIndex = 126;
             DEF.Text = "00";
             DEF.TextAlign = ContentAlignment.BottomCenter;
@@ -399,7 +392,7 @@
             // 
             labelAtk.AutoSize = true;
             labelAtk.ForeColor = Color.Silver;
-            labelAtk.Location = new Point(129, 29);
+            labelAtk.Location = new Point(94, 29);
             labelAtk.Name = "labelAtk";
             labelAtk.Size = new Size(28, 15);
             labelAtk.TabIndex = 125;
@@ -408,12 +401,13 @@
             // 
             // ATK
             // 
+            ATK.AutoSize = true;
             ATK.BackColor = Color.FromArgb(0, 5, 25);
-            ATK.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            ATK.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             ATK.ForeColor = Color.White;
-            ATK.Location = new Point(158, 22);
+            ATK.Location = new Point(128, 21);
             ATK.Name = "ATK";
-            ATK.Size = new Size(36, 25);
+            ATK.Size = new Size(34, 25);
             ATK.TabIndex = 124;
             ATK.Text = "00";
             ATK.TextAlign = ContentAlignment.BottomCenter;
@@ -422,7 +416,7 @@
             // 
             labelHP.AutoSize = true;
             labelHP.ForeColor = Color.Silver;
-            labelHP.Location = new Point(63, 29);
+            labelHP.Location = new Point(22, 29);
             labelHP.Name = "labelHP";
             labelHP.Size = new Size(26, 15);
             labelHP.TabIndex = 123;
@@ -431,12 +425,13 @@
             // 
             // HP
             // 
+            HP.AutoSize = true;
             HP.BackColor = Color.FromArgb(0, 5, 25);
-            HP.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            HP.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             HP.ForeColor = Color.White;
-            HP.Location = new Point(90, 22);
+            HP.Location = new Point(54, 21);
             HP.Name = "HP";
-            HP.Size = new Size(36, 25);
+            HP.Size = new Size(34, 25);
             HP.TabIndex = 121;
             HP.Text = "00";
             HP.TextAlign = ContentAlignment.BottomCenter;
@@ -462,7 +457,7 @@
             // Move8
             // 
             Move8.BackColor = Color.FromArgb(0, 5, 25);
-            Move8.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            Move8.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             Move8.ForeColor = Color.LightSlateGray;
             Move8.Location = new Point(278, 115);
             Move8.Name = "Move8";
@@ -473,7 +468,7 @@
             // Move6
             // 
             Move6.BackColor = Color.FromArgb(0, 5, 25);
-            Move6.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            Move6.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             Move6.ForeColor = Color.LightSlateGray;
             Move6.Location = new Point(278, 84);
             Move6.Name = "Move6";
@@ -484,7 +479,7 @@
             // Move4
             // 
             Move4.BackColor = Color.FromArgb(0, 5, 25);
-            Move4.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            Move4.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             Move4.ForeColor = SystemColors.ActiveCaption;
             Move4.Location = new Point(278, 53);
             Move4.Name = "Move4";
@@ -495,7 +490,7 @@
             // Move7
             // 
             Move7.BackColor = Color.FromArgb(0, 5, 25);
-            Move7.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            Move7.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             Move7.ForeColor = Color.LightSlateGray;
             Move7.Location = new Point(22, 115);
             Move7.Name = "Move7";
@@ -506,7 +501,7 @@
             // Move5
             // 
             Move5.BackColor = Color.FromArgb(0, 5, 25);
-            Move5.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            Move5.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             Move5.ForeColor = Color.LightSlateGray;
             Move5.Location = new Point(22, 84);
             Move5.Name = "Move5";
@@ -517,7 +512,7 @@
             // Move3
             // 
             Move3.BackColor = Color.FromArgb(0, 5, 25);
-            Move3.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            Move3.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             Move3.ForeColor = SystemColors.ActiveCaption;
             Move3.Location = new Point(22, 53);
             Move3.Name = "Move3";
@@ -528,7 +523,7 @@
             // Move1
             // 
             Move1.BackColor = Color.FromArgb(0, 5, 25);
-            Move1.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            Move1.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             Move1.ForeColor = SystemColors.ActiveCaption;
             Move1.Location = new Point(22, 22);
             Move1.Name = "Move1";
@@ -539,7 +534,7 @@
             // Move2
             // 
             Move2.BackColor = Color.FromArgb(0, 5, 25);
-            Move2.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            Move2.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             Move2.ForeColor = SystemColors.ActiveCaption;
             Move2.Location = new Point(278, 22);
             Move2.Name = "Move2";
@@ -642,7 +637,7 @@
             // textAbilityPatch
             // 
             textAbilityPatch.BackColor = Color.FromArgb(0, 5, 25);
-            textAbilityPatch.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            textAbilityPatch.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             textAbilityPatch.ForeColor = Color.White;
             textAbilityPatch.Location = new Point(616, 419);
             textAbilityPatch.Name = "textAbilityPatch";
@@ -666,7 +661,7 @@
             // textSweetHerba
             // 
             textSweetHerba.BackColor = Color.FromArgb(0, 5, 25);
-            textSweetHerba.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            textSweetHerba.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             textSweetHerba.ForeColor = Color.White;
             textSweetHerba.Location = new Point(817, 419);
             textSweetHerba.Name = "textSweetHerba";
@@ -690,7 +685,7 @@
             // textSaltyHerba
             // 
             textSaltyHerba.BackColor = Color.FromArgb(0, 5, 25);
-            textSaltyHerba.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            textSaltyHerba.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             textSaltyHerba.ForeColor = Color.White;
             textSaltyHerba.Location = new Point(911, 419);
             textSaltyHerba.Name = "textSaltyHerba";
@@ -706,7 +701,7 @@
             labelBottleCap.ForeColor = Color.Silver;
             labelBottleCap.Location = new Point(618, 452);
             labelBottleCap.Name = "labelBottleCap";
-            labelBottleCap.Size = new Size(28, 15);
+            labelBottleCap.Size = new Size(27, 15);
             labelBottleCap.TabIndex = 147;
             labelBottleCap.Text = "Cap";
             labelBottleCap.TextAlign = ContentAlignment.MiddleRight;
@@ -714,7 +709,7 @@
             // textBottleCap
             // 
             textBottleCap.BackColor = Color.FromArgb(0, 5, 25);
-            textBottleCap.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            textBottleCap.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             textBottleCap.ForeColor = Color.White;
             textBottleCap.Location = new Point(614, 467);
             textBottleCap.Name = "textBottleCap";
@@ -738,7 +733,7 @@
             // textSourHerba
             // 
             textSourHerba.BackColor = Color.FromArgb(0, 5, 25);
-            textSourHerba.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            textSourHerba.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             textSourHerba.ForeColor = Color.White;
             textSourHerba.Location = new Point(817, 467);
             textSourHerba.Name = "textSourHerba";
@@ -762,7 +757,7 @@
             // textSpicyHerba
             // 
             textSpicyHerba.BackColor = Color.FromArgb(0, 5, 25);
-            textSpicyHerba.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            textSpicyHerba.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             textSpicyHerba.ForeColor = Color.White;
             textSpicyHerba.Location = new Point(911, 467);
             textSpicyHerba.Name = "textSpicyHerba";
@@ -774,12 +769,13 @@
             // 
             // textSearchTime
             // 
+            textSearchTime.AutoSize = true;
             textSearchTime.BackColor = Color.FromArgb(0, 5, 25);
-            textSearchTime.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            textSearchTime.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textSearchTime.ForeColor = Color.LightSlateGray;
-            textSearchTime.Location = new Point(840, 501);
+            textSearchTime.Location = new Point(849, 503);
             textSearchTime.Name = "textSearchTime";
-            textSearchTime.Size = new Size(102, 25);
+            textSearchTime.Size = new Size(94, 21);
             textSearchTime.TabIndex = 153;
             textSearchTime.Text = "00:00:00:00";
             textSearchTime.TextAlign = ContentAlignment.BottomCenter;
@@ -818,7 +814,7 @@
             // textBitterHerba
             // 
             textBitterHerba.BackColor = Color.FromArgb(0, 5, 25);
-            textBitterHerba.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            textBitterHerba.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             textBitterHerba.ForeColor = Color.White;
             textBitterHerba.Location = new Point(714, 467);
             textBitterHerba.Name = "textBitterHerba";
@@ -833,7 +829,7 @@
             labelAbilityCapsule.ForeColor = Color.Silver;
             labelAbilityCapsule.Location = new Point(707, 404);
             labelAbilityCapsule.Name = "labelAbilityCapsule";
-            labelAbilityCapsule.Size = new Size(49, 15);
+            labelAbilityCapsule.Size = new Size(48, 15);
             labelAbilityCapsule.TabIndex = 157;
             labelAbilityCapsule.Text = "Capsule";
             labelAbilityCapsule.TextAlign = ContentAlignment.MiddleRight;
@@ -841,7 +837,7 @@
             // textAbilityCapsule
             // 
             textAbilityCapsule.BackColor = Color.FromArgb(0, 5, 25);
-            textAbilityCapsule.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            textAbilityCapsule.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             textAbilityCapsule.ForeColor = Color.White;
             textAbilityCapsule.Location = new Point(715, 419);
             textAbilityCapsule.Name = "textAbilityCapsule";
@@ -855,7 +851,7 @@
             DaySkips.Anchor = AnchorStyles.None;
             DaySkips.AutoSize = true;
             DaySkips.BackColor = Color.Transparent;
-            DaySkips.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            DaySkips.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             DaySkips.ForeColor = Color.LightSlateGray;
             DaySkips.Location = new Point(618, 509);
             DaySkips.Name = "DaySkips";

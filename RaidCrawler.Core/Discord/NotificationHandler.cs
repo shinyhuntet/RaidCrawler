@@ -111,7 +111,7 @@ public class NotificationHandler(IWebhookConfig config)
         var extramoves = string.Concat(encounter.ExtraMoves.Where(z => z != 0).Select(z => "- " + config.Emoji[strings.Types[MoveInfo.GetType(z, blank.Context)]] + $" {strings.Move[z]}ㅤ\n")).Trim();
         var area = $"{Areas.GetArea((int)(raid.Area - 1), raid.MapParent)}" + (config.ToggleDen ? $" [Den {raid.Den}]ㅤ" : "ㅤ");
         var rewards = GetRewards(rewardsList);
-        var authorData = GetAuthor(encounter.Stars, teratype, raid.IsEvent, raid.IsBlack);
+        var author_string = GetAuthor(encounter.Stars, teratype, raid.IsEvent, raid.IsBlack);
         var SuccessWebHook = new
         {
             username = "RaidCrawler " + config.InstanceName,
@@ -126,13 +126,13 @@ public class NotificationHandler(IWebhookConfig config)
                     color = int.Parse(hexColor, NumberStyles.HexNumber),
                     thumbnail = new
                     {
-                        url = $"https://github.com/kwsch/PKHeX/blob/master/PKHeX.Drawing.PokeSprite/Resources/img/Artwork%20Pokemon%20Sprites/a{spriteName}.png?raw=true",
+                        url = Utils.PokeImg(blank, false),
                     },
                     timestamp = DisplayDate.ToString("yyyy-MM-dd HH:mm:ss"),
                     author = new
                     {
-                        text = authorData.Item1,
-                        icon_url = authorData.Item2,
+                        name = author_string.Item1,
+                        icon_url = author_string.Item2,
                     },
                     footer = new
                     {

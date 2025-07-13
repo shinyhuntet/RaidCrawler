@@ -1,4 +1,5 @@
 using PKHeX.Core;
+using SysBot.Pokemon;
 using System.Numerics;
 using System.Reflection;
 
@@ -86,6 +87,66 @@ public static partial class Utils
         if (patchIndex != -1) tagString = tagString.ToString().Remove(patchIndex).AsSpan();
 
         return !Version.TryParse(tagString, out var latestVersion) ? null : latestVersion;
+    }
+
+    public static async Task<Image> GetPokemonImage(PKM pk)
+    {
+        using HttpClient client = new();
+        var url = await client.GetStreamAsync(PokeImg(pk, false)).ConfigureAwait(false);
+        Image Pokemon = Image.FromStream(url);
+
+        return Pokemon;
+    }
+
+    public static string PokeImg(PKM pkm, bool canGmax)
+    {
+        bool md = false;
+        bool fd = false;
+        string[] baseLink;
+        baseLink = "https://raw.githubusercontent.com/zyro670/HomeImages/master/128x128/poke_capture_0001_000_mf_n_00000000_f_n.png".Split('_');
+
+        if (Enum.IsDefined(typeof(GenderDependent), pkm.Species) && !canGmax && pkm.Form is 0)
+        {
+            if (pkm.Gender is 0 && pkm.Species is not (ushort)PKHeX.Core.Species.Torchic)
+                md = true;
+            else fd = true;
+        }
+
+        int form = pkm.Species switch
+        {
+            (ushort)PKHeX.Core.Species.Sinistea or (ushort)PKHeX.Core.Species.Polteageist or (ushort)PKHeX.Core.Species.Rockruff or (ushort)PKHeX.Core.Species.Mothim => 0,
+            (ushort)PKHeX.Core.Species.Alcremie when pkm.IsShiny || canGmax => 0,
+            _ => pkm.Form,
+
+        };
+        if (pkm.Species is (ushort)PKHeX.Core.Species.Sneasel)
+        {
+            if (pkm.Gender is 0)
+                md = true;
+            else fd = true;
+        }
+
+        if (pkm.Species is (ushort)PKHeX.Core.Species.Basculegion)
+        {
+            if (pkm.Gender is 0)
+            {
+                md = true;
+                pkm.Form = 0;
+            }
+            else { pkm.Form = 1; }
+
+            string s = pkm.IsShiny ? "r" : "n";
+            string g = md && pkm.Gender is not 1 ? "md" : "fd";
+            return $"https://raw.githubusercontent.com/zyro670/HomeImages/master/128x128/poke_capture_0" + $"{pkm.Species}" + "_00" + $"{pkm.Form}" + "_" + $"{g}" + "_n_00000000_f_" + $"{s}" + ".png";
+        }
+
+        baseLink[2] = pkm.Species < 10 ? $"000{pkm.Species}" : pkm.Species < 100 && pkm.Species > 9 ? $"00{pkm.Species}" : pkm.Species >= 1000 ? $"{pkm.Species}" : $"0{pkm.Species}";
+        baseLink[3] = pkm.Form < 10 ? $"00{form}" : $"0{form}";
+        baseLink[4] = pkm.PersonalInfo.OnlyFemale ? "fo" : pkm.PersonalInfo.OnlyMale ? "mo" : pkm.PersonalInfo.Genderless ? "uk" : fd ? "fd" : md ? "md" : "mf";
+        baseLink[5] = canGmax ? "g" : "n";
+        baseLink[6] = "0000000" + (pkm.Species is (ushort)PKHeX.Core.Species.Alcremie && !canGmax ? pkm.Data[0xE4] : 0);
+        baseLink[8] = pkm.IsShiny ? "r.png" : "n.png";
+        return string.Join("_", baseLink);
     }
 
     public static string GetFormString(ushort species, byte form, GameStrings formStrings, EntityContext context = EntityContext.Gen9)
