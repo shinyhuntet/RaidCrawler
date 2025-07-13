@@ -41,7 +41,8 @@ namespace RaidCrawler.WinForms.SubForms
             Nature = new Label();
             PokemonScale = new TextBox();
             groupBox1 = new GroupBox();
-            label1 = new Label();
+            labelNature = new Label();
+            labelScale = new Label();
             labelAbility = new Label();
             groupBox2 = new GroupBox();
             labelSpeed = new Label();
@@ -202,23 +203,25 @@ namespace RaidCrawler.WinForms.SubForms
             // 
             // Ability
             // 
+            Ability.AutoSize = true;
             Ability.BackColor = Color.FromArgb(0, 5, 25);
             Ability.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             Ability.ForeColor = SystemColors.ActiveCaption;
             Ability.Location = new Point(72, 22);
             Ability.Name = "Ability";
-            Ability.Size = new Size(200, 25);
+            Ability.Size = new Size(69, 25);
             Ability.TabIndex = 121;
             Ability.Text = "Ability";
             // 
             // Nature
             // 
+            Nature.AutoSize = true;
             Nature.BackColor = Color.FromArgb(0, 5, 25);
             Nature.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             Nature.ForeColor = SystemColors.ActiveCaption;
-            Nature.Location = new Point(328, 22);
+            Nature.Location = new Point(316, 22);
             Nature.Name = "Nature";
-            Nature.Size = new Size(200, 25);
+            Nature.Size = new Size(74, 25);
             Nature.TabIndex = 122;
             Nature.Text = "Nature";
             // 
@@ -227,15 +230,17 @@ namespace RaidCrawler.WinForms.SubForms
             PokemonScale.BackColor = Color.FromArgb(0, 5, 25);
             PokemonScale.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             PokemonScale.ForeColor = SystemColors.ActiveCaption;
-            PokemonScale.Location = new Point(328, 22);
+            PokemonScale.Location = new Point(482, 18);
             PokemonScale.Name = "PokemonScale";
             PokemonScale.ReadOnly = true;
             PokemonScale.Size = new Size(47, 32);
             PokemonScale.TabIndex = 162;
+            PokemonScale.TextAlign = HorizontalAlignment.Center;
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(labelNature);
+            groupBox1.Controls.Add(labelScale);
             groupBox1.Controls.Add(labelAbility);
             groupBox1.Controls.Add(Ability);
             groupBox1.Controls.Add(Nature);
@@ -248,16 +253,27 @@ namespace RaidCrawler.WinForms.SubForms
             groupBox1.TabStop = false;
             groupBox1.Text = "Details";
             // 
-            // label1
+            // labelNature
             // 
-            label1.AutoSize = true;
-            label1.ForeColor = Color.Silver;
-            label1.Location = new Point(278, 29);
-            label1.Name = "label1";
-            label1.Size = new Size(34, 15);
-            label1.TabIndex = 163;
-            label1.Text = "Scale";
-            label1.TextAlign = ContentAlignment.MiddleRight;
+            labelNature.AutoSize = true;
+            labelNature.ForeColor = Color.Silver;
+            labelNature.Location = new Point(264, 29);
+            labelNature.Name = "labelNature";
+            labelNature.Size = new Size(46, 15);
+            labelNature.TabIndex = 164;
+            labelNature.Text = "Nature:";
+            labelNature.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // labelScale
+            // 
+            labelScale.AutoSize = true;
+            labelScale.ForeColor = Color.Silver;
+            labelScale.Location = new Point(439, 29);
+            labelScale.Name = "labelScale";
+            labelScale.Size = new Size(37, 15);
+            labelScale.TabIndex = 163;
+            labelScale.Text = "Scale:";
+            labelScale.TextAlign = ContentAlignment.MiddleRight;
             // 
             // labelAbility
             // 
@@ -947,7 +963,7 @@ namespace RaidCrawler.WinForms.SubForms
         public Label Nature;
         public TextBox PokemonScale;
         private GroupBox groupBox1;
-        private Label label1;
+        private Label labelScale;
         private Label labelAbility;
         public PictureBox Map;
         private GroupBox groupBox2;
@@ -1001,5 +1017,6 @@ namespace RaidCrawler.WinForms.SubForms
         public PictureBox picShinyAlert;
         public Label Shiny;
         public Label DaySkips;
+        private Label labelNature;
     }
 }
