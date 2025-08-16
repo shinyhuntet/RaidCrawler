@@ -2802,8 +2802,14 @@ namespace RaidCrawler.WinForms
             Text += $" - Update v{version.Major}.{version.Minor}.{version.Build} available!";
             UpdateStatus($"Update v{version.Major}.{version.Minor}.{version.Build} available!");
 #if !DEBUG
-        MessageBox.Show($"Update available! v{version.Major}.{version.Minor}.{version.Build}");
-        Process.Start(new ProcessStartInfo("https://github.com/LegoFigure11/RaidCrawler/releases/") { UseShellExecute = true });
+        using UpdateNotifPopup nup = new(CurrentVersion, version);
+        if (nup.ShowDialog() == DialogResult.OK)
+        {
+            Process.Start(new ProcessStartInfo("https://github.com/LegoFigure11/RaidCrawler/releases/")
+            {
+                UseShellExecute = true
+            });
+        }
 #endif
         }
     }
